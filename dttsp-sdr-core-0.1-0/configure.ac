@@ -6,7 +6,7 @@ AC_INIT(dttsp, 0.1, [ab2kt@arrl.net> or <rwmcgwier@gmail.com])
 #AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AM_INIT_AUTOMAKE([-Werror foreign])
 AM_INIT_AUTOMAKE([])
-AC_CONFIG_SRCDIR([am_demod.c])
+AC_CONFIG_SRCDIR([src/am_demod.c])
 #AC_CONFIG_HEADER([config.h])
 
 AC_CANONICAL_HOST
