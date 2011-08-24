@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.60)
-AC_INIT(dttsp, new, [ab2kt@arrl.net> or <rwmcgwier@gmail.com])
+AC_INIT(dttsp, 0.1, [ab2kt@arrl.net> or <rwmcgwier@gmail.com])
 #AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AM_INIT_AUTOMAKE([-Werror foreign])
 AM_INIT_AUTOMAKE([])
@@ -50,5 +50,5 @@ AC_PROG_GCC_TRADITIONAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([floor gettimeofday memset pow sqrt])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
