@@ -3,14 +3,14 @@ Section: hamradio
 Priority: extra 
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 Standards-Version: 3.8.4
-Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, automake
+Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, libjack-jackd2-dev, automake
 Vcs-Git: git://github.com/8cH9azbsFifZ/dttsp_sdr-core.git
 Vcs-browser: https://github.com/8cH9azbsFifZ/dttsp_sdr-core
 Homepage: https://www.cgran.org/wiki/DttSP
 
 Package: dttsp 
 Architecture: any
-Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk
+Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
 Description: DttDP
