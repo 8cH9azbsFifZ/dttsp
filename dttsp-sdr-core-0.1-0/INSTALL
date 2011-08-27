@@ -2,3 +2,9 @@ MAC OSX
 =======
 * Install Jack
 http://www.jackosx.com/
+
+
+Linux
+=====
+Debian
+* apt-get install jackd libjack-dev 
