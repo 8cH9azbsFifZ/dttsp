@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Tue, 28 Aug 2011 01:35:52 +0100
+Source: dttsp
+Binary: dttsp
+Architecture: source i386
+Version: 0.2-1
+Distribution: unstable
+Urgency: low
+Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+Changed-By: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+Description: 
+ dttsp      - DttDP
+Changes: 
+ dttsp (0.2-1) unstable; urgency=low
+ .
+   * Refinements in debian package.
+Checksums-Sha1: 
+ 9d50a77082d6f0a1653f286da38ade05b9341cf3 675 dttsp_0.2-1.dsc
+ 3a6838c1e8a28245ace01b016c8a67c88f8595ec 368486 dttsp_0.2-1.tar.gz
+ 041a3e8b1e4e00d870679d6b3fe9bf3d1448e116 39710 dttsp_0.2-1_i386.deb
+Checksums-Sha256: 
+ 8f01ed7845ea4b20fb703f5391f7fd021911598b47eaf24c435adb8a343baf5e 675 dttsp_0.2-1.dsc
+ fda2db4af864bcca1c2b56dfb68c68b5f192dcfe39052ab1b4b938a97298a18f 368486 dttsp_0.2-1.tar.gz
+ 7732f7616d09d85d04dcc723d102545d6b9aebd86c62d309427db60b7696d3f4 39710 dttsp_0.2-1_i386.deb
+Files: 
+ c9f2fc5c2ddd43025221499c6c363841 675 hamradio extra dttsp_0.2-1.dsc
+ 01b632e1b1afba377ac27e22643bca8c 368486 hamradio extra dttsp_0.2-1.tar.gz
+ 7dfe1608c7751ac80f0255c1325abf94 39710 hamradio extra dttsp_0.2-1_i386.deb
