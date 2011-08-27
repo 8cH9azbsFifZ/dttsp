@@ -1,3 +1,9 @@
+dttsp (0.2-1) unstable; urgency=low
+ 
+  * Refinements in debian package.
+
+ -- Dr. Gerolf Ziegenhain <g@ziegenhain.com>  Tue, 28 Aug 2011 01:35:52 +0100
+
 dttsp (0.2-0) unstable; urgency=low
  
   * Initial release.
