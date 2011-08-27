@@ -52,5 +52,5 @@ AC_PROG_GCC_TRADITIONAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([floor gettimeofday memset pow sqrt])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/Makefile Makefile])
 AC_OUTPUT
