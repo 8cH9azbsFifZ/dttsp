@@ -1,0 +1,15 @@
+Source: dttsp
+Section: hamradio 
+Essential: no
+Priority: extra 
+Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+Build-Depends: libfftw3-dev, portaudio19-dev, debhelper (>= 7.0.50), libsamplerate0-dev, libc6 (>= 2.3.4), libstdc++6 (>= 4.4.0), python-numpy, gfortran, python2.6-dev
+
+Package: dttsp 
+Depends: libfftw3-3,
+Recommends: sdr-shell (>= 4.0)
+Architecture: any
+Description: DttDP
+ sdr-core a standalone program designed to allow the software construction of transceivers for AM,FM,SSB,CW,... 
+ NB: All sources seem to be outdated. This version is only proved to work with sdr-shell-v4.
+Homepage: https://www.cgran.org/wiki/DttSP
