@@ -331,7 +331,7 @@ jack_ringbuffer_restart(jack_ringbuffer_t *ring, int nbytes) {
 void
 send_sound(COMPLEX *buff, int len) {
   if (jack_ringbuffer_write_space(lring) < len * sizeof(float)) {
-    write(2, "overrun\n", 8);
+    (void) write(2, "overrun\n", 8);
     jack_ringbuffer_restart(lring, size * sizeof(float));
     jack_ringbuffer_restart(rring, size * sizeof(float));
   } else {
@@ -354,7 +354,7 @@ send_sound(COMPLEX *buff, int len) {
 PRIVATE void
 jack_xrun(void *arg) {
   char *str = "xrun!\n";
-  write(2, str, strlen(str));
+  (void) write(2, str, strlen(str));
 }
 
 /* -------------------------------------------------------------------------- */

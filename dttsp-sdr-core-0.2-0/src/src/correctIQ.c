@@ -41,7 +41,7 @@ Bridgewater, NJ 08807
 #include <correctIQ.h>
 
 /* -------------------------------------------------------------------------- */
-/** @brief new Correct IQ object
+/** @brief new correctIQ object
 * 
 * @param phase 
 * @param gain 
@@ -52,14 +52,15 @@ newCorrectIQ(REAL phase, REAL gain) {
   IQ iq = (IQ) safealloc(1, sizeof(iqstate), "IQ state");
   iq->phase = phase;
   iq->gain = gain;
+  iq->flag = TRUE;
+  iq->mu = 0.0025;
+  memset((void *) iq->w, 0, 16 * sizeof(COMPLEX));
   return iq;
 }
 
 /* -------------------------------------------------------------------------- */
-/** @brief destroy a correct IQ object 
+/** @brief destroy a correctIQ object 
 * 
-* @param iq 
-* @param  
 * @param iq 
 */
 /* ---------------------------------------------------------------------------- */
@@ -67,7 +68,7 @@ void
 delCorrectIQ(IQ iq) { safefree((char *) iq); }
 
 /* -------------------------------------------------------------------------- */
-/** @brief Run a correctIQ 
+/** @brief Run IQ correction
 * 
 * @param sigbuf 
 * @param iq 
@@ -77,7 +78,13 @@ void
 correctIQ(CXB sigbuf, IQ iq) {
   int i;
   for (i = 0; i < CXBhave(sigbuf); i++) {
+    COMPLEX y;
     CXBimag(sigbuf, i) += iq->phase * CXBreal(sigbuf, i);
     CXBreal(sigbuf, i) *= iq->gain;
+    y = Cadd(CXBdata(sigbuf, i),
+	     Cmul(iq->w[0], Conjg(CXBdata(sigbuf, i))));
+    iq->w[0] = Csub(Cscl(iq->w[0], 1.0 - iq->mu * 0.000001),
+		    Cscl(Cmul(y, y), iq->mu));
+    CXBdata(sigbuf, i) = y;
   }
 }

@@ -42,7 +42,9 @@ Bridgewater, NJ 08807
 #include <bufvec.h>
 
 typedef struct _iqstate {
-  REAL phase, gain;
+  REAL phase, gain,mu;
+  COMPLEX w[16];
+  BOOLEAN flag;
 } *IQ, iqstate;
 
 extern IQ newCorrectIQ(REAL phase, REAL gain);

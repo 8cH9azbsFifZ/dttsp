@@ -280,14 +280,12 @@ hinterp_vec(REAL *u, int m, REAL *v, int n) {
 /** @brief status_message 
 * 
 * @param msg 
-* @param write(2 
-* @param msg 
-* @param strlen(msg 
-* @param  
 */
 /* ---------------------------------------------------------------------------- */
 void
-status_message(char *msg) { (void) write(2, msg, strlen(msg)); }
+status_message(char *msg) {
+  int idiotic_warning = write(2, msg, strlen(msg));
+}
 
 FILE *
 find_rcfile(char *base) {

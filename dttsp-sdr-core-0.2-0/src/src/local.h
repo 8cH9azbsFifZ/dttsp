@@ -39,9 +39,9 @@ Bridgewater, NJ 08807
 #include <common.h>
 
 #define RCBASE ".DttSPrc"
-#define PARMPATH  "/dev/shm/SDRcommands"
-#define SPECPATH  "/dev/shm/SDRspectrum"
-#define METERPATH "/dev/shm/SDRmeter"
+#define PARMPORT 19001
+#define SPECPORT 19002
+#define METERPORT 19003
 #define REPLAYPATH ".replay"
 #define WISDOMPATH ".wisdom"
 
@@ -49,7 +49,6 @@ extern struct _loc {
   char name[MAXPATHLEN];
   struct {
     char rcfile[MAXPATHLEN],
-         parm[MAXPATHLEN],
          echo[MAXPATHLEN],
          meter[MAXPATHLEN],
          replay[MAXPATHLEN],
@@ -67,6 +66,9 @@ extern struct _loc {
   struct {
     int offs;
   } skew;
+  struct {
+    unsigned short spec, meter, parm;
+  } port;
 } loc;
 
 #endif

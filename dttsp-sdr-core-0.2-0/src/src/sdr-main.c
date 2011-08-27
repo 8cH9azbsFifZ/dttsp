@@ -61,125 +61,270 @@ extern void setup_workspace(REAL samplerate,
 extern void destroy_workspace(void);
 extern int reset_for_buflen(int new_buflen);
 
-//========================================================================
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 
-/* -------------------------------------------------------------------------- */
-/** @brief private spectrum thread 
-* @return void
-*/
-/* ---------------------------------------------------------------------------- */
+/* @brief private spectrum_thread 
+ * @return void
+ */
+
 PRIVATE void
 spectrum_thread(void) {
+  unsigned short port = top->meas.spec.port;
+  struct sockaddr_in clnt;
+  int sock, clnt_len;
+
+  if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+    perror("Failed to create UDP socket for spectrum");
+    exit(1);
+  }
+
+  clnt_len = sizeof(clnt);
+  memset((char *) &clnt, 0, clnt_len);
+  clnt.sin_family = AF_INET;
+  clnt.sin_addr.s_addr = htonl(INADDR_ANY);
+  clnt.sin_port = htons(port);
+
+  if (top->verbose)
+    fprintf(stderr, "%s: Ready to return spectrum on port %d\n", top->snds.name, port);
+
   while (top->running) {
+    int sp_blen;
+    char sp_buff[32768];
+
     sem_wait(top->sync.pws.sem);
     sem_wait(top->sync.upd.sem);
 
-    if (fwrite((char *) &uni->spec.label, sizeof(int), 1, top->meas.spec.fp)
-	!= 1) {
-      fprintf(stderr, "error writing spectrum label\n");
+    // generate & pack up data to be sent
+
+    {
+      char *ptr = sp_buff;
+      memcpy(ptr, (char *) &uni->spec.label, sizeof(int));
+      ptr += sizeof(int);
+      memcpy(ptr, (char *) &uni->spec.stamp, sizeof(int));
+      ptr += sizeof(int);
+
+      // spectrum or scope?
+
+      if (uni->spec.last == SPEC_LAST_FREQ) {
+	int cnt = sizeof(float) * uni->spec.size;
+	compute_spectrum(&uni->spec);
+	memcpy(ptr, (char *) uni->spec.output, cnt);
+	ptr += cnt;
+      } else {
+	int cnt = sizeof(float) * uni->spec.size;
+	memcpy(ptr, (char *) uni->spec.oscope, cnt);
+	ptr += cnt;
+      }
+      sp_blen = ptr - sp_buff;
+    }
+
+    if (sendto(sock,
+	       sp_buff,
+	       sp_blen,
+	       0,
+	       (struct sockaddr *) &clnt,
+	       clnt_len)
+	!= sp_blen) {
+      perror("Failed to send spectrum");
       exit(1);
     }
 
-    if (fwrite((char *) &uni->spec.stamp, sizeof(int), 1, top->meas.spec.fp)
-	!= 1) {
-      fprintf(stderr, "error writing spectrum timestamp\n");
-      exit(1);
-    }
-
-    // spec points or waveform?
-    if (uni->spec.last == SPEC_LAST_FREQ) {
-      compute_spectrum(&uni->spec);
-      if (fwrite((char *) uni->spec.output, sizeof(float), uni->spec.size, top->meas.spec.fp)
-	  != uni->spec.size) {
-	fprintf(stderr, "error writing spectrum\n");
-	exit(1);
-      }
-
-    } else {
-      if (fwrite((char *) uni->spec.oscope, sizeof(float), uni->spec.size, top->meas.spec.fp)
-	  != uni->spec.size) {
-	fprintf(stderr, "error writing oscope\n");
-	exit(1);
-      }
-    }
-
-    fflush(top->meas.spec.fp);
     sem_post(top->sync.upd.sem);
   }
 
+  close(sock);
   pthread_exit(0);
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private meter thread 
+//////////////////////////////////////////////////////////////////////////
+
+/* @brief private meter_thread 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 meter_thread(void) {
-  while (top->running) {
+  unsigned short port = top->meas.mtr.port;
+  struct sockaddr_in clnt;
+  int sock, clnt_len;
+
+  if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+    perror("Failed to create UDP socket for meter");
+    exit(1);
+  }
+
+  clnt_len = sizeof(clnt);
+  memset((char *) &clnt, 0, clnt_len);
+  clnt.sin_family = AF_INET;
+  clnt.sin_addr.s_addr = htonl(INADDR_ANY);
+  clnt.sin_port = htons(port);
+
+  if (top->verbose)
+    fprintf(stderr, "%s: Ready to return meter on port %d\n", top->snds.name, port);
+
+  while (top->running){ 
+    int mtr_blen;
+    char mtr_buff[1024];
+
     sem_wait(top->sync.mtr.sem);
     sem_wait(top->sync.upd.sem);
 
-    if (fwrite((char *) &uni->meter.label, sizeof(int), 1, top->meas.mtr.fp)
-	!= 1) {
-      fprintf(stderr, "error writing meter label\n");
+    // pack up data to be sent
+
+    {
+      char *ptr = mtr_buff;
+      memcpy(ptr, &uni->meter.label, sizeof(int));
+      ptr += sizeof(int);
+      
+      // rx or tx?
+      
+      if (uni->meter.last == METER_LAST_RX) {
+	int cnt = sizeof(float) * MAXRX * RXMETERPTS;
+	memcpy(ptr, (char *) uni->meter.snap.rx, cnt);
+	ptr += cnt;
+      } else {
+	int cnt = sizeof(float) * TXMETERPTS;
+	memcpy(ptr, (char *) uni->meter.snap.tx, cnt);
+	ptr += cnt;
+      }
+      mtr_blen = ptr - mtr_buff;
+    }
+      
+    if (sendto(sock,
+	       mtr_buff,
+	       mtr_blen,
+	       0,
+	       (struct sockaddr *) &clnt,
+	       clnt_len)
+	!= mtr_blen) {
+      perror("Failed to send meter");
       exit(1);
     }
 
-    // RX or TX?
-    if (uni->meter.last == METER_LAST_RX) {
-      if (fwrite((char *) uni->meter.snap.rx,
-		 sizeof(REAL),
-		 MAXRX * RXMETERPTS,
-		 top->meas.mtr.fp)
-	  != MAXRX * RXMETERPTS) {
-	fprintf(stderr, "error writing rx meter\n");
-	exit(1);
-      }
-    } else {
-      if (fwrite((char *) uni->meter.snap.tx,
-		 sizeof(REAL),
-		 TXMETERPTS,
-		 top->meas.mtr.fp)
-	  != TXMETERPTS) {
-	fprintf(stderr, "error writing tx meter\n");
-	exit(1);
-      }
-    }
-
-    fflush(top->meas.mtr.fp);
     sem_post(top->sync.upd.sem);
   }
 
+  close(sock);
   pthread_exit(0);
 }
 
-//========================================================================
+//////////////////////////////////////////////////////////////////////////
 
-/* -------------------------------------------------------------------------- */
-/** @brief private process update thread 
+/* @brief private process_updates_thread 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 process_updates_thread(void) {
-  while (top->running) {
-    pthread_testcancel();
+  int sock;
 
-    while (fgets(top->parm.buff, sizeof(top->parm.buff), top->parm.fp)) {
-#if 0
-      fprintf(stderr, "command seen: %s", top->parm.buff);
-      fflush(stderr);
-#endif
-      do_update(top->parm.buff, top->verbose ? top->echo.fp : 0);
+  // set up listening port
+
+  {
+    unsigned short port = top->parm.port;
+    struct sockaddr_in serv;
+    int serv_len;
+    
+    if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+      perror("Failed to create UDP socket for update");
+      exit(1);
     }
+    
+    serv_len = sizeof(serv);
+    memset((char *) &serv, 0, serv_len);
+    serv.sin_family = AF_INET;
+    serv.sin_addr.s_addr = htonl(INADDR_ANY);
+    serv.sin_port = htons(port);
+    
+    if (bind(sock, (struct sockaddr *) &serv, serv_len) < 0) {
+      perror("Failed to bind update UDP socket");
+      exit(1);
+    }
+    
+    if (top->verbose)
+      fprintf(stderr, "%s: Ready to receive commands on port %d\n", top->snds.name, port);
   }
 
+  while (top->running) {
+    struct sockaddr_in clnt;
+    socklen_t clnt_len;
+    int rcvd, rtn;
+
+    pthread_testcancel();
+    clnt_len = sizeof(clnt);
+
+    // block until a command shows up
+
+    if ((rcvd = recvfrom(sock,
+			 top->parm.buff,
+			 sizeof(top->parm.buff) - 1,
+			 0,
+			 (struct sockaddr *) &clnt,
+			 &clnt_len))
+	< 0) {
+      perror("Failed to receive UDP update command");
+      exit(1);
+    }
+
+    top->parm.buff[rcvd] = 0; // properly terminated string?
+
+    if (top->verbose)
+      fprintf(stderr,
+	      "%s: update client connected: %s\n",
+	      top->snds.name,
+	      inet_ntoa(clnt.sin_addr));
+
+    top->resp.size = 0; // assume no returned data
+
+    // do_update may block internally!
+
+    rtn = do_update(top->parm.buff, top->verbose ? top->echo.fp : 0);
+
+    // ack (?)
+
+    {
+      static char
+	*ack_msg = "ok",
+	*err_msg = "error";
+      static int
+	ack_len = 2,
+	err_len = 5;
+      char *msg;
+      int msg_len;
+
+      if (rtn != 0)
+	msg = err_msg, msg_len = err_len;
+      else {
+	if (top->resp.size == 0)
+	  msg = ack_msg, msg_len = ack_len;
+	else {
+	  static char rbuf[8192];
+	  sprintf(rbuf, "%s %s", ack_msg, top->resp.buff);
+	  msg = rbuf;
+	  msg_len = ack_len + 1 + top->resp.size;
+	}
+      }
+      
+      if (sendto(sock,
+		 msg,
+		 msg_len,
+		 0,
+		 (struct sockaddr *) &clnt,
+		 sizeof(clnt))
+	  != msg_len) {
+	perror("Failed to send update command response");
+	exit(1);
+      }
+    }
+  }
+    
+  close(sock);
   pthread_exit(0);
 }
 
-//========================================================================
+//////////////////////////////////////////////////////////////////////////
 
 PRIVATE void
 run_mute(void) {
@@ -392,13 +537,10 @@ audio_callback(jack_nframes_t nframes, void *arg) {
   sem_post(top->sync.buf.sem);
 }
 
-//========================================================================
-
-/* -------------------------------------------------------------------------- */
-/** @brief private gethold
+/* @brief private gethold
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE BOOLEAN
 gethold(void) {
   if ((ringb_float_read_space(top->snds.ring.i.l) >= top->hold.size.frames) &&
@@ -410,11 +552,10 @@ gethold(void) {
     return FALSE;
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private puthold 
+/* @brief private puthold 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 puthold(void) {
   if ((ringb_float_write_space(top->snds.ring.o.l) >= top->hold.size.frames) &&
@@ -428,13 +569,10 @@ puthold(void) {
   }
 }
 
-//========================================================================
-
-/* -------------------------------------------------------------------------- */
-/** @brief private run mute 
+/* @brief private process_samples_thread
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 process_samples_thread(void) {
   while (top->running) {
@@ -474,7 +612,7 @@ execute(void) {
 
   // start audio processing
   if (jack_activate(top->snds.client))
-    fprintf(stderr, "cannot activate jack client"), exit(1);
+    fprintf(stderr, "%s: cannot activate jack client", top->snds.name), exit(1);
 
   // final shutdown always starts in update thread,
   // so join it first
@@ -498,13 +636,9 @@ execute(void) {
   jack_client_close(top->snds.client);
 }
 
-//........................................................................
-
-
-/* -------------------------------------------------------------------------- */
-/** @brief private run test 
+/* @brief private run test 
 */
-/* ---------------------------------------------------------------------------- */
+
 PRIVATE void
 setup_local_audio(void) {
   top->offs = loc.skew.offs;
@@ -557,25 +691,15 @@ setup_local_audio(void) {
 
 PRIVATE void 
 setup_updates(void) {
-  top->parm.path = loc.path.parm;
-  if ((top->parm.fd = open(top->parm.path, O_RDWR)) == -1)
-    perror(top->parm.path), exit(1);
-  if (!(top->parm.fp = fdopen(top->parm.fd, "r+"))) {
-    fprintf(stderr, "can't fdopen parm pipe %s\n", loc.path.parm);
-    exit(1);
-  }
+  top->parm.port = loc.port.parm;
 
   // do this here 'cuz the update thread is controlling the action
-  if (uni->meter.flag) {
-    top->meas.mtr.path = loc.path.meter;
-    top->meas.mtr.fp = efopen(top->meas.mtr.path, "r+");
-  }
-  if (uni->spec.flag) {
-    top->meas.spec.path = loc.path.spec;
-    top->meas.spec.fp = efopen(top->meas.spec.path, "r+");
-  }
+  if (uni->meter.flag)
+    top->meas.mtr.port = loc.port.meter;
+  if (uni->spec.flag)
+    top->meas.spec.port = loc.port.spec;
 
-  if (uni->update.path = loc.path.replay) {
+  if ((uni->update.path = loc.path.replay)) {
     uni->update.flag = TRUE;
     uni->update.fp = efopen(uni->update.path, "w+");
   }
@@ -597,14 +721,12 @@ setup_updates(void) {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private audio callback 
-* 
-* @param nframes 
-* @param arg 
+/* @brief private audio callback 
+ * @param nframes 
+ * @param arg 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 jack_xrun(void *arg) {}
 
@@ -618,10 +740,14 @@ setup_system_audio(void) {
   else
     sprintf(top->snds.name, "sdr-%d", top->pid);
   
-  if (!(top->snds.client = jack_client_new(top->snds.name)))
-    perror("can't make client -- jack not running?"), exit(1);
+  if (!(top->snds.client = jack_client_new(top->snds.name))) {
+    fprintf(stderr, "%s: ", top->snds.name);
+    perror("can't make client -- jack not running?");
+    exit(1);
+  }
 
   if ((jack_nframes_t) loc.def.rate != jack_get_sample_rate(top->snds.client)) {
+    fprintf(stderr, "In %s:\n", top->snds.name);
     fprintf(stderr, "There's a sample rate mismatch.\n");
     fprintf(stderr, "dttsp rate is %d.\n", (jack_nframes_t) loc.def.rate);
     fprintf(stderr, "jackd rate is %d.\n", jack_get_sample_rate(top->snds.client));
@@ -681,11 +807,10 @@ make_sem(char *id, char *path) {
   return s;
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private process samples 
+/* @brief private process samples 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 setup_threading(void) {
   top->sync.upd.sem = make_sem("update", top->sync.upd.name);
@@ -707,35 +832,36 @@ setup_threading(void) {
   }
 }
 
-//========================================================================
-// hard defaults, then environment
 
-/* -------------------------------------------------------------------------- */
-/** @brief private execute 
+/////////////////////////////////////
+// hard defaults, then environment
+/////////////////////////////////////
+
+/* @brief private execute 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 setup_defaults(void) {
   // no env vars for these
   loc.name[0] = 0; // no default for client name, period
   loc.path.echo[0] = 0;  // file defaults to stderr
 
-  strcpy(loc.path.meter,  METERPATH);
-  strcpy(loc.path.parm,   PARMPATH);
   strcpy(loc.path.rcfile, RCBASE);
   strcpy(loc.path.replay, REPLAYPATH);
-  strcpy(loc.path.spec,   SPECPATH);
   strcpy(loc.path.wisdom, WISDOMPATH);
 
-  loc.def.comp =  DEFCOMP;
-  loc.def.mode =  DEFMODE;
-  loc.def.nrx =   MAXRX;
-  loc.def.rate =  DEFRATE;
-  loc.def.size =  DEFSIZE;
-  loc.def.spec =  DEFSPEC;
-  loc.mult.ring = RINGMULT;
-  loc.skew.offs = DEFOFFS;
+  loc.def.comp   =  DEFCOMP;
+  loc.def.mode   =  DEFMODE;
+  loc.def.nrx    =   MAXRX;
+  loc.def.rate   =  DEFRATE;
+  loc.def.size   =  DEFSIZE;
+  loc.def.spec   =  DEFSPEC;
+  loc.mult.ring  = RINGMULT;
+  loc.skew.offs  = DEFOFFS;
+  loc.port.spec  = SPECPORT;
+  loc.port.meter = METERPORT;
+  loc.port.parm  = PARMPORT;
 
   {
     char *ep;
@@ -744,12 +870,12 @@ setup_defaults(void) {
     if ((ep = getenv("SDR_DEFSIZE")))    loc.def.size = atoi(ep);
     if ((ep = getenv("SDR_RINGMULT")))   loc.mult.ring = atoi(ep);
     if ((ep = getenv("SDR_SKEWOFFS")))   loc.skew.offs = atoi(ep);
-    if ((ep = getenv("SDR_METERPATH")))  strcpy(loc.path.meter, ep);
+    if ((ep = getenv("SDR_METERPORT")))  loc.port.meter = atoi(ep);
     if ((ep = getenv("SDR_NAME")))       strcpy(loc.name, ep);
-    if ((ep = getenv("SDR_PARMPATH")))   strcpy(loc.path.parm, ep);
+    if ((ep = getenv("SDR_PARMPORT")))   loc.port.parm = atoi(ep);
     if ((ep = getenv("SDR_RCBASE")))     strcpy(loc.path.rcfile, ep);
     if ((ep = getenv("SDR_REPLAYPATH"))) strcpy(loc.path.replay, ep);
-    if ((ep = getenv("SDR_SPECPATH")))   strcpy(loc.path.spec, ep);
+    if ((ep = getenv("SDR_SPECPORT")))   loc.port.spec = atoi(ep);
     if ((ep = getenv("SDR_WISDOMPATH"))) strcpy(loc.path.wisdom, ep);
   }
 }
@@ -788,11 +914,11 @@ reset_for_buflen(int new_buflen) {
   return 0;
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private setup local _audio 
+
+/* @brief private destroy_globals
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 destroy_globals(void) {
   int i;
@@ -803,11 +929,10 @@ destroy_globals(void) {
   safefree((char *) top);
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private setup updates 
+/* @brief private closeup
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void 
 closeup(void) {
   ringb_float_free(top->snds.ring.o.r);
@@ -822,8 +947,6 @@ closeup(void) {
   delOSC(top->test.twotone.a.gen);
   delOSC(top->test.twotone.b.gen);
 
-  fclose(top->parm.fp);
-
   if (top->verbose && top->echo.fp != stderr)
     fclose(top->echo.fp);
 
@@ -833,13 +956,11 @@ closeup(void) {
   sem_unlink(top->sync.upd.name);
 
   if (uni->meter.flag) {
-    fclose(top->meas.mtr.fp);
     sem_close(top->sync.mtr.sem);
     sem_unlink(top->sync.mtr.name);
   }
 
   if (uni->spec.flag) {
-    fclose(top->meas.spec.fp);
     sem_close(top->sync.pws.sem);
     sem_unlink(top->sync.pws.name);
   }
@@ -867,12 +988,12 @@ PRIVATE struct option long_options[] = {
   {"mode",          required_argument, 0,  4},
   {"buffsize",      required_argument, 0,  5},
   {"ringmult",      required_argument, 0,  6},
-  {"meter-path",    required_argument, 0,  8},
+  {"meter-port",    required_argument, 0,  8},
   {"client-name",   required_argument, 0,  9},
-  {"command-path",  required_argument, 0, 10},
+  {"command-port",  required_argument, 0, 10},
   {"init-path",     required_argument, 0, 11},
   {"replay-path",   required_argument, 0, 12},
-  {"spectrum-path", required_argument, 0, 13},
+  {"spectrum-port", required_argument, 0, 13},
   {"wisdom-path",   required_argument, 0, 14},
   {"echo-path",     required_argument, 0, 15},
   {"skewoffs",      required_argument, 0, 16},
@@ -884,18 +1005,19 @@ PRIVATE int option_index;
 
 PRIVATE void usage(void);
 
-/* -------------------------------------------------------------------------- */
-/** @brief private setup threading 
+
+/* @brief private setup threading 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 setup_from_commandline(int argc, char **argv) {
   int c;
   while ((c = getopt_long(argc, argv,
 			  short_options,
 			  long_options,
-			  &option_index)) != EOF) {
+			  &option_index))
+	 != EOF) {
     switch (c) {
     case 0:
     case 'v':
@@ -930,7 +1052,7 @@ setup_from_commandline(int argc, char **argv) {
       break;
 
     case 8:
-      strcpy(loc.path.meter, optarg);
+      loc.port.meter = atoi(optarg);
       break;
 
     case 9:
@@ -938,7 +1060,7 @@ setup_from_commandline(int argc, char **argv) {
       break;
 
     case 10:
-      strcpy(loc.path.parm, optarg);
+      loc.port.parm = atoi(optarg);
       break;
 
     case 11:
@@ -950,7 +1072,7 @@ setup_from_commandline(int argc, char **argv) {
       break;
 
     case 13:
-      strcpy(loc.path.spec, optarg);
+      loc.port.spec = atoi(optarg);
       break;
 
     case 14:
@@ -985,11 +1107,10 @@ create_globals(void) {
   tx = (struct _tx *) safealloc(1, sizeof(struct _tx), "tx global");
 }
 
-/* -------------------------------------------------------------------------- */
-/** @brief private destroy globals 
+/* @brief private destroy globals 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 setup(int argc, char **argv) {
   create_globals();
@@ -1003,6 +1124,9 @@ setup(int argc, char **argv) {
   top->offs = DEFOFFS;
   top->snds.doin = FALSE;
   top->snds.rsiz = DEFSIZE;
+
+  // temporarily call us by our pid, until client name established
+  sprintf(top->snds.name, "pid %d", top->pid);
 
   //  fprintf(stderr, "safemem %d\n", safememcurrcount());
   safememreset();
@@ -1034,13 +1158,15 @@ setup(int argc, char **argv) {
 //========================================================================
 
 int 
-main(int argc, char **argv) { setup(argc, argv), execute(), closeup(); } 
+main(int argc, char **argv) {
+  setup(argc, argv), execute(), closeup();
+  return 0;
+} 
 
-/* -------------------------------------------------------------------------- */
-/** @brief private create globals 
+/* @brief private create globals 
  * @return void
-*/
-/* ---------------------------------------------------------------------------- */
+ */
+
 PRIVATE void
 usage(void) {
   fprintf(stderr, "--verbose\n");
@@ -1061,16 +1187,19 @@ usage(void) {
   fprintf(stderr, "	Use <power-of-2> as DSP buffersize\n");
   fprintf(stderr, "--ringmult=<num>\n");
   fprintf(stderr, "	Use <num> * <buffsize> for ring buffer length\n");
-  fprintf(stderr, "--meter-path=<pipe-path>\n");
-  fprintf(stderr, "	Use named pipe <pipe-path> as conduit for meter data\n");
-  fprintf(stderr, "--command-path=<pipe-path>\n");
-  fprintf(stderr, "	Use named pipe <pipe-path> as a conduit for update commands\n");
+  fprintf(stderr, "--spectrum-pport=<portnum>\n");
+  fprintf(stderr, "	Use port <portnum> as conduit for spectrum data\n");
+  fprintf(stderr, "	Default is %d\n", SPECPORT);
+  fprintf(stderr, "--meter-port=<portnum>\n");
+  fprintf(stderr, "	Use port <portnum> as conduit for meter data\n");
+  fprintf(stderr, "	Default is %d\n", METERPORT);
+  fprintf(stderr, "--command-port=<portnum>\n");
+  fprintf(stderr, "	Use port <portnum> as a conduit for update commands\n");
+  fprintf(stderr, "	Default is %d\n", PARMPORT);
   fprintf(stderr, "--init-path=<init-file>\n");
   fprintf(stderr, "	Read update commands from <init-file> at startup. Like -l.\n");
   fprintf(stderr, "--replay-path=<path>\n");
   fprintf(stderr, "	Write/reread saved update commands to/from <path>\n");
-  fprintf(stderr, "--spectrum-path=<pipe-path>\n");
-  fprintf(stderr, "	Use named pipe <pipe-path> as conduit for spectrum data\n");
   fprintf(stderr, "--wisdom-path=<path>\n");
   fprintf(stderr, "	fftw3 wisdom is in <path>\n");
   fprintf(stderr, "--echo-path=<path>\n");
@@ -1086,12 +1215,12 @@ usage(void) {
   fprintf(stderr, "\tSDR_DEFSIZE\n");
   fprintf(stderr, "\tSDR_RINGMULT\n");
   fprintf(stderr, "\tSDR_SKEWOFFS\n");
-  fprintf(stderr, "\tSDR_METERPATH\n");
+  fprintf(stderr, "\tSDR_METERPORT\n");
   fprintf(stderr, "\tSDR_NAME\n");
-  fprintf(stderr, "\tSDR_PARMPATH\n");
+  fprintf(stderr, "\tSDR_PARMPORT\n");
   fprintf(stderr, "\tSDR_RCBASE\n");
   fprintf(stderr, "\tSDR_REPLAYPATH\n");
-  fprintf(stderr, "\tSDR_SPECPATH\n");
+  fprintf(stderr, "\tSDR_SPECPPORT\n");
   fprintf(stderr, "\tSDR_WISDOMPATH\n");
 
   exit(1);

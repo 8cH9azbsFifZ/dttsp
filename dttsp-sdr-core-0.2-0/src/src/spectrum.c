@@ -85,7 +85,7 @@ snap_spectrum(SpecBlock *sb, int label, int stamp) {
 }
 
 /* -------------------------------------------------------------------------- */
-/** @brief cwFunction to take a snapshot of the osillascope 
+/** @brief cwFunction to take a snapshot of the oscilloscope 
 * 
 * @param sb 
 * @param label 
@@ -167,7 +167,7 @@ init_spectrum(SpecBlock *sb) {
 }
 
 /* -------------------------------------------------------------------------- */
-/** @brief Reinitiate the spectrum block 
+/** @brief Reinitialize the spectrum block 
 * 
 * @param sb 
 * @return void

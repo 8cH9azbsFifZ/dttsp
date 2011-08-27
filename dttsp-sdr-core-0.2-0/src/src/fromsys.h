@@ -42,6 +42,10 @@ Bridgewater, NJ 08807
 #include <sys/mman.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>  
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include <signal.h>
 #include <time.h>
 #include <fcntl.h>

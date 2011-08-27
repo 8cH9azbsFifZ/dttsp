@@ -31,6 +31,8 @@ AC_CHECK_LIB([jack], [jack_connect], ,
 	[AC_MSG_ERROR("Could not find library jack.")])
 AC_CHECK_LIB([m], [pow])
 AC_CHECK_LIB([pthread], [pthread_create])
+AC_CHECK_LIB([lo], [lo_address_new], ,
+	[AC_MSG_ERROR("Could not find library liblo.")])
 
 # Checks for header files.
 AC_HEADER_STDC

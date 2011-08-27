@@ -128,6 +128,7 @@ struct _rx {
   } osc;
 
   struct {
+    REAL lo, hi;
     ComplexFIR coef;
     FiltOvSv ovsv;
     COMPLEX *save;
@@ -187,6 +188,10 @@ struct _rx {
   struct {
     EQ gen;
     BOOLEAN flag;
+    struct {
+      int size;
+      REAL pre, gain[10];
+    } parm;
   } grapheq;
 
   SDRMODE mode;
@@ -230,6 +235,7 @@ struct _tx {
   } osc;
 
   struct {
+    REAL lo, hi;
     ComplexFIR coef;
     FiltOvSv ovsv;
     COMPLEX *save;
@@ -257,8 +263,11 @@ struct _tx {
   struct {
     EQ gen;
     BOOLEAN flag;
+    struct {
+      int size;
+      REAL pre, gain[10];
+    } parm;
   } grapheq;
-
 
   struct {
     SpeechProc gen;
@@ -317,6 +326,7 @@ struct _top {
   RUNMODE state;
 
   // audio io
+
   struct {
     struct {
       float *l, *r;
@@ -331,12 +341,21 @@ struct _top {
     int fd;
     FILE *fp;
     char buff[4096];
-  } echo, parm;
+  } echo;
+
+  struct {
+    char buff[4096];
+    unsigned short port;
+  } parm;
+
+  struct {
+    char buff[4096];
+    int size;
+  } resp;
 
   struct {
     struct {
-      char *path;
-      FILE *fp;
+      short port;
     } mtr, spec;
   } meas;
 

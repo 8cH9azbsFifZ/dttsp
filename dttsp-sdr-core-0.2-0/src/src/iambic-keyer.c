@@ -543,7 +543,7 @@ jack_ringbuffer_restart(jack_ringbuffer_t *ring, int nbytes) {
 void
 send_tone(void) {
   if (jack_ringbuffer_write_space(lring) < TONE_SIZE * sizeof(float)) {
-    write(2, "overrun tone\n", 13);
+    (void) write(2, "overrun tone\n", 13);
     jack_ringbuffer_restart(lring, TONE_SIZE * sizeof(float));
     jack_ringbuffer_restart(rring, TONE_SIZE * sizeof(float));
   } else {
@@ -568,7 +568,7 @@ send_tone(void) {
 void
 send_silence(void) {
   if (jack_ringbuffer_write_space(lring) < TONE_SIZE * sizeof(float)) {
-    write(2, "overrun zero\n", 13);
+    (void) write(2, "overrun zero\n", 13);
     jack_ringbuffer_restart(lring, TONE_SIZE * sizeof(float));
     jack_ringbuffer_restart(rring, TONE_SIZE * sizeof(float));
   } else {
@@ -799,7 +799,7 @@ update_thread(void) {
 PRIVATE void
 jack_xrun(void *arg) {
   char *str = "xrun";
-  write(2, str, strlen(str));
+  (void) write(2, str, strlen(str));
 }
 
 /* -------------------------------------------------------------------------- */

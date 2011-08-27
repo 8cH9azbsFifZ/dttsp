@@ -62,11 +62,8 @@ This is derived from equ.xmms:
 #include <fftw3.h>
 
 typedef struct _eq {
-  CXB data;
+  CXB data, in, out;
   FiltOvSv p;
-  CXB in, out;
-  COMPLEX num[9], den[6];
-  BOOLEAN notchflag;
 } eq, *EQ;
 
 extern void graphiceq(EQ a);

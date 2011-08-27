@@ -56,7 +56,6 @@ Bridgewater, NJ 08807
 PRIVATE REAL INLINE
 dB2lin(REAL dB) { return pow(10.0, dB / 20.0); }
 
-
 /* -------------------------------------------------------------------------- */
 /** @brief private setRXFilter 
 * 
@@ -85,6 +84,9 @@ setRXFilter(int n, char **p) {
   fprintf(stderr, "setRXFilter %f %f\n", low_frequency, high_frequency);
 #endif
   
+  rx[RL]->filt.lo = low_frequency;
+  rx[RL]->filt.hi = high_frequency;
+
   rx[RL]->filt.coef = newFIR_Bandpass_COMPLEX(low_frequency,
 					      high_frequency,
 					      uni->rate.sample,
@@ -110,6 +112,14 @@ setRXFilter(int n, char **p) {
   memcpy((char *) rx[RL]->filt.save, (char *) rx[RL]->filt.ovsv->zfvec,
 	 rx[RL]->filt.ovsv->fftlen * sizeof(COMPLEX));
 
+  return 0;
+}
+
+PRIVATE int
+getRXFilter(int n, char **p) {
+  sprintf(top->resp.buff, "getRXFilter %f %f\n",
+	  rx[RL]->filt.lo, rx[RL]->filt.hi);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -184,6 +194,10 @@ setTXFilter(int n, char **p) {
     return -2;
   if ((low_frequency + 10) >= high_frequency)
     return -3;
+
+  tx->filt.lo = low_frequency;
+  tx->filt.hi = high_frequency;
+
   delFIR_COMPLEX(tx->filt.coef);
   tx->filt.coef = newFIR_Bandpass_COMPLEX(low_frequency,
 					  high_frequency,
@@ -212,6 +226,14 @@ setTXFilter(int n, char **p) {
 	 (char *) tx->filt.ovsv->zfvec,
 	 tx->filt.ovsv->fftlen * sizeof(COMPLEX));
 
+  return 0;
+}
+
+PRIVATE int
+getTXFilter(int n, char **p) {
+  sprintf(top->resp.buff, "getTXFilter %f %f\n",
+	  tx->filt.lo, tx->filt.hi);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -320,6 +342,20 @@ setMode(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getRXMode(int n, char **p) {
+  sprintf(top->resp.buff, "getRXMode %d\n", rx[RL]->mode);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
+PRIVATE int
+getTXMode(int n, char **p) {
+  sprintf(top->resp.buff, "getTXMode %d\n", tx->mode);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setOSC 
 * 
@@ -347,6 +383,20 @@ setOsc(int n, char **p) {
     }
   } else
     tx->osc.gen->Frequency = rx[RL]->osc.gen->Frequency = newfreq;
+  return 0;
+}
+
+PRIVATE int
+getRXOsc(int n, char **p) {
+  sprintf(top->resp.buff, "getRXOsc %f\n", rx[RL]->osc.gen->Frequency);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
+PRIVATE int
+getTXOsc(int n, char **p) {
+  sprintf(top->resp.buff, "getTXOsc %f\n", tx->osc.gen->Frequency);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -394,7 +444,7 @@ replay_updates(void) {
 	if (log && !quiet) {
 	  int i;
 	  char *s = since(&top->start_tv);
-	  fprintf(log, "replay[%s]: returned %d from", s, val);
+	  fprintf(log, "%s replay[%s]: returned %d from", top->snds.name, s, val);
 	  for (i = 0; i < NF(splt); i++)
 	    fprintf(log, " %s", F(splt, i));
 	  putc('\n', log);
@@ -417,6 +467,15 @@ replay_updates(void) {
 PRIVATE int
 setBlkNR(int n, char **p) {
   rx[RL]->banr.flag = atoi(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getBlkNR(int n, char **p) {
+  sprintf(top->resp.buff, "getBlkNR %d %f\n",
+	  rx[RL]->banr.flag,
+	  rx[RL]->banr.gen->adaptation_rate);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -449,6 +508,15 @@ setBlkANF(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getBlkANF(int n, char **p) {
+  sprintf(top->resp.buff, "getBlkANF %d %f\n",
+	  rx[RL]->banf.flag,
+	  rx[RL]->banf.gen->adaptation_rate);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setBlkANFval 
 * 
@@ -475,6 +543,15 @@ setBlkANFval(int n, char **p) {
 PRIVATE int
 setNB(int n, char **p) {
   rx[RL]->nb.flag = atoi(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getNB(int n, char **p) {
+  sprintf(top->resp.buff, "getNB %d %f\n",
+	  rx[RL]->nb.flag,
+	  rx[RL]->nb.gen->threshold);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -507,6 +584,15 @@ setSDROM(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getSDROM(int n, char **p) {
+  sprintf(top->resp.buff, "getSDROM %d %f\n",
+	  rx[RL]->nb_sdrom.flag,
+	  rx[RL]->nb_sdrom.gen->threshold);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setSDROMvals 
 * 
@@ -533,6 +619,13 @@ setSDROMvals(int n, char **p) {
 PRIVATE int
 setBIN(int n, char **p) {
   rx[RL]->bin.flag = atoi(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getBIN(int n, char **p) {
+  sprintf(top->resp.buff, "getBIN %d\n", rx[RL]->bin.flag);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -578,6 +671,30 @@ setRXAGCCompression(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getRXAGC(int n, char **p) {
+  sprintf(top->resp.buff,
+	  "getRXAGC %d %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
+	  rx[RL]->dttspagc.flag,
+	  rx[RL]->dttspagc.gen->gain.bottom,
+	  rx[RL]->dttspagc.gen->gain.fix,
+	  rx[RL]->dttspagc.gen->gain.limit,
+	  rx[RL]->dttspagc.gen->gain.top,
+	  rx[RL]->dttspagc.gen->fastgain.bottom,
+	  rx[RL]->dttspagc.gen->fastgain.fix,
+	  rx[RL]->dttspagc.gen->fastgain.limit,
+	  rx[RL]->dttspagc.gen->attack,
+	  rx[RL]->dttspagc.gen->decay,
+	  rx[RL]->dttspagc.gen->fastattack,
+	  rx[RL]->dttspagc.gen->fastdecay,
+	  rx[RL]->dttspagc.gen->fasthangtime,
+	  rx[RL]->dttspagc.gen->hangthresh,
+	  rx[RL]->dttspagc.gen->hangtime,
+	  rx[RL]->dttspagc.gen->slope);
+	  
+  top->resp.size = strlen(top->resp.buff);
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setTXLevelerAttack 
 * 
@@ -599,6 +716,30 @@ setTXLevelerAttack(int n, char **p) {
      FASTLEAD * tx->leveler.gen->mask) & tx->leveler.gen->mask;
   tx->leveler.gen->fasthangtime = 0.1;	//wa6ahl: 100 ms
   return 0;
+}
+
+PRIVATE int
+getTXLeveler(int n, char **p) {
+  sprintf(top->resp.buff,
+	  "getTXLeveler %d %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
+	  tx->leveler.flag,
+	  tx->leveler.gen->gain.bottom,
+	  tx->leveler.gen->gain.fix,
+	  tx->leveler.gen->gain.limit,
+	  tx->leveler.gen->gain.top,
+	  tx->leveler.gen->fastgain.bottom,
+	  tx->leveler.gen->fastgain.fix,
+	  tx->leveler.gen->fastgain.limit,
+	  tx->leveler.gen->attack,
+	  tx->leveler.gen->decay,
+	  tx->leveler.gen->fastattack,
+	  tx->leveler.gen->fastdecay,
+	  tx->leveler.gen->fasthangtime,
+	  tx->leveler.gen->hangthresh,
+	  tx->leveler.gen->hangtime,
+	  tx->leveler.gen->slope);
+	  
+  top->resp.size = strlen(top->resp.buff);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -863,7 +1004,7 @@ setTXAGCFF(int n, char **p) {
 }
 
 /* -------------------------------------------------------------------------- */
-/** @brief private setTXAGCFFCompresion 
+/** @brief private setTXAGCFFCompression 
 * 
 * @param n 
 * @param *p 
@@ -906,6 +1047,16 @@ setTXSpeechCompressionGain(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getTXSpeechCompression(int n, char **p) {
+  sprintf(top->resp.buff, "getTXSpeechCompression %d %f %f\n",
+	  tx->spr.flag,
+	  tx->spr.gen->K,
+	  tx->spr.gen->MaxGain);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 #if 0
 PRIVATE int
 f2x(REAL f) {
@@ -943,8 +1094,16 @@ setGrphRXEQ3(int n, char **p) {
     ComplexFIR tmpfilt;
     COMPLEX *filtcoef = newvec_COMPLEX(512, "filter for EQ"),
             *tmpcoef  = newvec_COMPLEX(257, "tmp filter for EQ");
-    REAL gain[3],
-         preamp = dB2lin(atof(p[0])) * 0.5;
+    REAL dB = atof(p[0]),
+         gain[3],
+         preamp = dB2lin(dB) * 0.5;
+
+    rx[RL]->grapheq.parm.size = 3;
+    rx[RL]->grapheq.parm.pre = dB;
+    for (i = 0; i < 3; i++) {
+      rx[RL]->grapheq.parm.gain[i] = atof(p[i + 1]);
+      gain[i] = preamp * rx[RL]->grapheq.parm.gain[i];
+    }
 
     tmpfilt = newFIR_Bandpass_COMPLEX(-400, 400, uni->rate.sample, 257);
     for (i = 0; i < 257; i++)
@@ -1007,13 +1166,21 @@ setGrphRXEQ10(int n, char **p) {
     ComplexFIR tmpfilt;
     COMPLEX *filtcoef = newvec_COMPLEX(512, "filter for EQ"),
             *tmpcoef  = newvec_COMPLEX(257, "tmp filter for EQ");
-    REAL preamp = dB2lin(atof(p[0])) * 0.5;
+    REAL dB = atof(p[0]),
+         gain[10],
+         preamp = dB2lin(dB) * 0.5;
 
-    for (j = 1, band = 15; j <= 10; j++, band += 3) {
+    rx[RL]->grapheq.parm.size = 10;
+    rx[RL]->grapheq.parm.pre = dB;
+
+    for (j = 0; j < 10; j++)
+      rx[RL]->grapheq.parm.gain[j] = gain[j] = atof(p[j + 1]);
+
+    for (j = 0, band = 15; j < 10; j++, band += 3) {
       REAL f_here  = ISOband_get_nominal(band),
 	   f_below = gmean(f_here / 2.0, f_here),
 	   f_above = gmean(f_here, f_here * 2.0),
-	   g_here  = dB2lin(atof(p[j])) * preamp;
+	   g_here  = dB2lin(gain[j]) * preamp;
 
       tmpfilt = newFIR_Bandpass_COMPLEX(-f_above, -f_below, uni->rate.sample, 257);
       for (i = 0; i < 257; i++)
@@ -1044,8 +1211,39 @@ setGrphRXEQ10(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getGrphRXEQ(int n, char **p) {
+  if (rx[RL]->grapheq.parm.size == 3)
+    sprintf(top->resp.buff,
+	    "getGrphRXEQ %d %d %f %f %f %f\n",
+	    rx[RL]->grapheq.flag,
+	    rx[RL]->grapheq.parm.size,
+	    rx[RL]->grapheq.parm.pre,
+	    rx[RL]->grapheq.parm.gain[0],
+	    rx[RL]->grapheq.parm.gain[1],
+	    rx[RL]->grapheq.parm.gain[2]);
+  else
+    sprintf(top->resp.buff,
+	    "getGrphRXEQ %d %d %f %f %f %f %f %f %f %f %f %f %f\n",
+	    rx[RL]->grapheq.flag,
+	    rx[RL]->grapheq.parm.size,
+	    rx[RL]->grapheq.parm.pre,
+	    rx[RL]->grapheq.parm.gain[0],
+	    rx[RL]->grapheq.parm.gain[1],
+	    rx[RL]->grapheq.parm.gain[2],
+	    rx[RL]->grapheq.parm.gain[3],
+	    rx[RL]->grapheq.parm.gain[4],
+	    rx[RL]->grapheq.parm.gain[5],
+	    rx[RL]->grapheq.parm.gain[6],
+	    rx[RL]->grapheq.parm.gain[7],
+	    rx[RL]->grapheq.parm.gain[8],
+	    rx[RL]->grapheq.parm.gain[9]);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
-/** @brief private setGrpgTXEQ3 
+/** @brief private setGrphTXEQ3 
 * 
 * @param n 
 * @param *p 
@@ -1063,12 +1261,16 @@ setGrphTXEQ3(int n, char **p) {
     ComplexFIR tmpfilt;
     COMPLEX *filtcoef = newvec_COMPLEX(512, "filter for EQ"),
             *tmpcoef  = newvec_COMPLEX(257, "tmp filter for EQ");
-    REAL gain[3],
-         preamp = dB2lin(atof(p[0])) * 0.5;
+    REAL dB = atof(p[0]),
+         gain[3],
+         preamp = dB2lin(dB) * 0.5;
 
-    gain[0] = dB2lin(atof(p[1])) * preamp;
-    gain[1] = dB2lin(atof(p[2])) * preamp;
-    gain[2] = dB2lin(atof(p[3])) * preamp;
+    tx->grapheq.parm.size = 3;
+    tx->grapheq.parm.pre = dB;
+    for (i = 0; i < 3; i++) {
+      tx->grapheq.parm.gain[i] = atof(p[i + 1]);
+      gain[i] = preamp * tx->grapheq.parm.gain[i];
+    }
 
     tmpfilt = newFIR_Bandpass_COMPLEX(-400, 400, uni->rate.sample, 257);
     for (i = 0; i < 257; i++)
@@ -1129,13 +1331,21 @@ setGrphTXEQ10(int n, char **p) {
     ComplexFIR tmpfilt;
     COMPLEX *filtcoef = newvec_COMPLEX(512, "filter for EQ"),
             *tmpcoef  = newvec_COMPLEX(257, "tmp filter for EQ");
-    REAL preamp = dB2lin(atof(p[0])) * 0.5;
+    REAL dB = atof(p[0]),
+         gain[10],
+         preamp = dB2lin(dB) * 0.5;
 
-    for (j = 1, band = 15; j <= 10; j++, band += 3) {
+    tx->grapheq.parm.size = 10;
+    tx->grapheq.parm.pre = dB;
+
+    for (j = 0; j < 10; j++)
+      tx->grapheq.parm.gain[j] = gain[j] = atof(p[j + 1]);
+
+    for (j = 0, band = 15; j < 10; j++, band += 3) {
       REAL f_here  = ISOband_get_nominal(band),
 	   f_below = gmean(f_here / 2.0, f_here),
 	   f_above = gmean(f_here, f_here * 2.0),
-	   g_here  = dB2lin(atof(p[j])) * preamp;
+	   g_here  = dB2lin(gain[j]) * preamp;
 
       tmpfilt = newFIR_Bandpass_COMPLEX(-f_above, -f_below, uni->rate.sample, 257);
       for (i = 0; i < 257; i++)
@@ -1166,6 +1376,37 @@ setGrphTXEQ10(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getGrphTXEQ(int n, char **p) {
+  if (tx->grapheq.parm.size == 3)
+    sprintf(top->resp.buff,
+	    "getGrphTXEQ %d %d %f %f %f %f\n",
+	    tx->grapheq.flag,
+	    tx->grapheq.parm.size,
+	    tx->grapheq.parm.pre,
+	    tx->grapheq.parm.gain[0],
+	    tx->grapheq.parm.gain[1],
+	    tx->grapheq.parm.gain[2]);
+  else
+    sprintf(top->resp.buff,
+	    "getGrphTXEQ %d %d %f %f %f %f %f %f %f %f %f %f %f\n",
+	    tx->grapheq.flag,
+	    tx->grapheq.parm.size,
+	    tx->grapheq.parm.pre,
+	    tx->grapheq.parm.gain[0],
+	    tx->grapheq.parm.gain[1],
+	    tx->grapheq.parm.gain[2],
+	    tx->grapheq.parm.gain[3],
+	    tx->grapheq.parm.gain[4],
+	    tx->grapheq.parm.gain[5],
+	    tx->grapheq.parm.gain[6],
+	    tx->grapheq.parm.gain[7],
+	    tx->grapheq.parm.gain[8],
+	    tx->grapheq.parm.gain[9]);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setNotch160 
 * 
@@ -1176,7 +1417,9 @@ setGrphTXEQ10(int n, char **p) {
 /* ---------------------------------------------------------------------------- */
 PRIVATE int
 setNotch160(int n, char **p) {
+#if 0
   tx->grapheq.gen->notchflag = atoi(p[0]);
+#endif
   return 0;
 }
 
@@ -1191,6 +1434,13 @@ setNotch160(int n, char **p) {
 PRIVATE int
 setTXCarrierLevel(int n, char **p) {
   tx->am.carrier_level = atof(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getTXCarrierLevel(int n, char **p) {
+  sprintf(top->resp.buff, "getTXCarrierLevel %f\n", tx->am.carrier_level);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -1227,6 +1477,18 @@ setANFvals(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getANF(int n, char **p) {
+  sprintf(top->resp.buff, "getANF %d %d %d %f %f\n",
+	  rx[RL]->anf.flag,
+	  rx[RL]->anf.gen->adaptive_filter_size,
+	  rx[RL]->anf.gen->delay,
+	  rx[RL]->anf.gen->adaptation_rate,
+	  rx[RL]->anf.gen->leakage);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setNR 
 * 
@@ -1260,6 +1522,18 @@ setNRvals(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getANR(int n, char **p) {
+  sprintf(top->resp.buff, "getANR %d %d %d %f %f\n",
+	  rx[RL]->anr.flag,
+	  rx[RL]->anr.gen->adaptive_filter_size,
+	  rx[RL]->anr.gen->delay,
+	  rx[RL]->anr.gen->adaptation_rate,
+	  rx[RL]->anr.gen->leakage);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setcorrectIQ 
 * 
@@ -1271,9 +1545,27 @@ setNRvals(int n, char **p) {
 PRIVATE int
 setcorrectIQ(int n, char **p) {
   REAL phaseadjustment = atof(p[0]),
-    gainadjustment = atof(p[1]);
+       gainadjustment = atof(p[1]);
   rx[RL]->iqfix->phase = 0.001 * phaseadjustment;
   rx[RL]->iqfix->gain = 1.0 + 0.001 * gainadjustment;
+  return 0;
+}
+
+PRIVATE int
+getRXIQ(int n, char **p) {
+  sprintf(top->resp.buff, "getRXIQ %f %f\n",
+	  rx[RL]->iqfix->phase,
+	  rx[RL]->iqfix->gain);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
+PRIVATE int
+getTXIQ(int n, char **p) {
+  sprintf(top->resp.buff, "getTXIQ %f %f\n",
+	  tx->iqfix->phase,
+	  tx->iqfix->gain);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -1303,7 +1595,7 @@ setcorrectIQphase(int n, char **p) {
 PRIVATE int
 setcorrectIQgain(int n, char **p) {
   REAL gainadjustment = atof(p[0]);
-  rx[RL]->iqfix->gain = (1.0 + 0.001 * gainadjustment);
+  rx[RL]->iqfix->gain = 1.0 + 0.001 * gainadjustment;
   return 0;
 }
 
@@ -1318,7 +1610,7 @@ setcorrectIQgain(int n, char **p) {
 PRIVATE int
 setcorrectTXIQ(int n, char **p) {
   REAL phaseadjustment = atof(p[0]),
-    gainadjustment = atof(p[1]);
+       gainadjustment = atof(p[1]);
   tx->iqfix->phase = 0.001 * phaseadjustment;
   tx->iqfix->gain = 1.0 + 0.001 * gainadjustment;
   return 0;
@@ -1382,6 +1674,15 @@ setSquelchSt(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getRXSquelch(int n, char **p) {
+  sprintf(top->resp.buff, "getRXSquelch %d %f\n",
+	  rx[RL]->squelch.flag,
+	  rx[RL]->squelch.thresh);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setTXSquelch 
 * 
@@ -1407,6 +1708,15 @@ setTXSquelch(int n, char **p) {
 PRIVATE int
 setTXSquelchSt(int n, char **p) {
   tx->squelch.flag = atoi(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getTXSquelch(int n, char **p) {
+  sprintf(top->resp.buff, "getTXSquelch %d %f\n",
+	  tx->squelch.flag,
+	  tx->squelch.thresh);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -1463,6 +1773,13 @@ setTXWaveShapeSt(int n, char **p) {
   return 0;
 }
 
+PRIVATE int
+getTXWaveShape(int n, char **p) {
+  sprintf(top->resp.buff, "getTXWaveShape %d\n", tx->wvs.flag);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /***/
 
 /* -------------------------------------------------------------------------- */
@@ -1476,6 +1793,13 @@ setTXWaveShapeSt(int n, char **p) {
 PRIVATE int
 setTRX(int n, char **p) {
   uni->mode.trx = atoi(p[0]);
+  return 0;
+}
+
+PRIVATE int
+getTRX(int n, char **p) {
+  sprintf(top->resp.buff, "getTRX %d\n", uni->mode.trx);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -1509,6 +1833,18 @@ setSpotToneVals(int n, char **p) {
        rise = atof(p[2]),
        fall = atof(p[3]);
   setSpotToneGenVals(rx[RL]->spot.gen, gain, freq, rise, fall);
+  return 0;
+}
+
+PRIVATE int
+getSpotTone(int n, char **p) {
+  sprintf(top->resp.buff, "getSpotTone %d %f %f %f %f\n",
+	  rx[RL]->spot.flag,
+	  rx[RL]->spot.gen->gain,
+	  rx[RL]->spot.gen->osc.freq,
+	  rx[RL]->spot.gen->rise.dur,
+	  rx[RL]->spot.gen->fall.dur);
+  top->resp.size = strlen(top->resp.buff);
   return 0;
 }
 
@@ -1657,6 +1993,13 @@ setRXListen(int n, char **p) {
   }
 }
 
+PRIVATE int
+getRXListen(int n, char **p) {
+  sprintf(top->resp.buff, "getRXListen %d\n", uni->multirx.lis);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setRXOn 
 * 
@@ -1727,6 +2070,13 @@ setRXOff(int n, char **p) {
   }
 }
 
+PRIVATE int
+getRXCount(int n, char **p) {
+  sprintf(top->resp.buff, "getRXCount %d\n", uni->multirx.nac);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 /* -------------------------------------------------------------------------- */
 /** @brief private setRXPan 
 * 
@@ -1753,6 +2103,14 @@ setRXPan(int n, char **p) {
     rx[RL]->azim = Cmplx(cos(theta), sin(theta));
     return 0;
   }
+}
+
+PRIVATE int
+getRXPan(int n, char **p) {
+  sprintf(top->resp.buff, "getRXPan %f %f\n",
+	  rx[RL]->azim.re, rx[RL]->azim.im);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1807,26 +2165,23 @@ setGain(int n, char **p) {
   return 0;
 }
 
-#if 0
-/* -------------------------------------------------------------------------- */
-/** @brief private setRXGain 
-* 
-* @param n 
-* @param *p 
-* @return int 
-*/
-/* ---------------------------------------------------------------------------- */
 PRIVATE int
-setRXGain(int n, char **p) {
-  if (n < 1) {
-    rx[RL]->gain = 1.0;
-    return 0;
-  } else {
-    rx[RL]->gain = dB2lin(atof(p[0]));
-    return 0;
-  }
+getRXGain(int n, char **p) {
+  sprintf(top->resp.buff, "getRXGain %f %f\n",
+	  rx[RL]->gain.i,
+	  rx[RL]->gain.o);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
-#endif
+
+PRIVATE int
+getTXGain(int n, char **p) {
+  sprintf(top->resp.buff, "getTXGain %f %f\n",
+	  tx->gain.i,
+	  tx->gain.o);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
 
 /* -------------------------------------------------------------------------- */
 /** @brief private setCompandSt 
@@ -1857,6 +2212,24 @@ setCompandSt(int n, char **p) {
       tx->cpd.flag = flag;
     return 0;
   }
+}
+
+PRIVATE int
+getRXCompand(int n, char **p) {
+  sprintf(top->resp.buff, "getRXCompand %d %f\n",
+	  rx[RL]->cpd.flag,
+	  rx[RL]->cpd.gen->fac);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
+PRIVATE int
+getTXCompand(int n, char **p) {
+  sprintf(top->resp.buff, "getTXCompand %d %f\n",
+	  tx->cpd.flag,
+	  tx->cpd.gen->fac);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1971,40 +2344,6 @@ setTXCompand(int n, char **p) {
 
 //------------------------------------------------------------------------
 
-#if 0
-// [type]
-/* -------------------------------------------------------------------------- */
-/** @brief private setMeterType 
-* 
-* @param n 
-* @param *p 
-* @return int 
-*/
-/* ---------------------------------------------------------------------------- */
-PRIVATE int
-setMeterType(int n, char **p) {
-  if (n < 1)
-    uni->meter.rx.type = SIGNAL_STRENGTH;
-  else {
-    METERTYPE type = (METERTYPE) atoi(p[0]);
-    if (n > 1) {
-      int trx = atoi(p[1]);
-      switch (trx) {
-      case TX:
-	uni->meter.tx->type = type;
-	break;
-      case RX:
-      default:
-	uni->meter.rx.type = type;
-	break;
-      }
-    } else
-      uni->meter.rx.type = type;
-  }
-  return 0;
-}
-#endif
-
 /* -------------------------------------------------------------------------- */
 /** @brief private setSpectrumPolyphase 
 * 
@@ -2092,7 +2431,19 @@ setSpectrumType(int n, char **p) {
   default:
     return -1;
   }
-  return uni->spec.type;
+  return 0;
+}
+
+PRIVATE int
+getSpectrumInfo(int n, char **p) {
+  sprintf(top->resp.buff, "getSpectrumInfo %d %d %d %d %d\n",
+	  uni->spec.polyphase,
+	  uni->spec.wintype,
+	  uni->spec.type,
+	  uni->spec.scale,
+	  uni->spec.rxk);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2112,6 +2463,13 @@ setDCBlockSt(int n, char **p) {
     tx->dcb.flag = atoi(p[0]);
     return 0;
   }
+}
+
+PRIVATE int
+getDCBlock(int n, char **p) {
+  sprintf(top->resp.buff, "getDCBlock %d\n", tx->dcb.flag);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2152,6 +2510,13 @@ setNewBuflen(int n, char **p) {
     top->susp = FALSE;
   }
   return rtn;
+}
+
+PRIVATE int
+getBuflen(int n, char **p) {
+  sprintf(top->resp.buff, "getBuflen %d\n", uni->buflen);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2283,6 +2648,19 @@ setTestThru(int n, char **p) {
   return -1;
 }
 
+PRIVATE int
+getTEST(int n, char **p) {
+  sprintf(top->resp.buff, "getTEST %f %f %f %f %f %f %f %d %d\n",
+	  top->test.tone.amp, top->test.tone.freq,
+	  top->test.twotone.a.amp, top->test.twotone.a.freq,
+	  top->test.twotone.b.amp, top->test.twotone.b.freq,
+	  top->test.noise.amp,
+	  top->test.mode,
+	  top->test.thru);
+  top->resp.size = strlen(top->resp.buff);
+  return 0;
+}
+
 //========================================================================
 
 /* -------------------------------------------------------------------------- */
@@ -2387,14 +2765,36 @@ reqScope(int n, char **p) {
   return 0;
 }
 
+/* -------------------------------------------------------------------------- */
+/** @brief private reqDump
+* 
+* quasi modo
+*
+* @param n 
+* @param *p 
+* @return int 
+*/
+/* ---------------------------------------------------------------------------- */
+
+PRIVATE int
+reqDump(int n, char **p) {
+#if 0
+  snap_dump();
+  sem_post(top->sync.dmp.sem);
+#endif
+  return 0;
+}
+
 //========================================================================
 
 CTE update_cmds[] = {
+  {"reqDump", reqDump},
   {"reqMeter", reqMeter},
   {"reqRXMeter", reqRXMeter},
-  {"reqTXMeter", reqTXMeter},
   {"reqScope", reqScope},
   {"reqSpectrum", reqSpectrum},
+  {"reqTXMeter", reqTXMeter},
+
   {"setANF", setANF},
   {"setANFvals", setANFvals},
   {"setBIN", setBIN},
@@ -2404,27 +2804,17 @@ CTE update_cmds[] = {
   {"setBlkNRval", setBlkNRval},
   {"setCompand", setCompand},
   {"setCompandSt", setCompandSt},
-  {"setcorrectIQ", setcorrectIQ},
-  {"setcorrectIQgain", setcorrectIQgain},
-  {"setcorrectIQphase", setcorrectIQphase},
-  {"setcorrectTXIQ", setcorrectTXIQ},
-  {"setcorrectTXIQgain", setcorrectTXIQgain},
-  {"setcorrectTXIQphase", setcorrectTXIQphase},
   {"setDCBlock", setDCBlock},
   {"setDCBlockSt", setDCBlockSt},
   {"setFilter", setFilter},
   {"setFinished", setFinished},
-  {"setfixedAGC", setfixedAGC},
-
   {"setGain", setGain},
-
-  {"setGrphRXEQ3", setGrphRXEQ3},
   {"setGrphRXEQ10", setGrphRXEQ10},
+  {"setGrphRXEQ3", setGrphRXEQ3},
   {"setGrphRXEQcmd", setGrphRXEQcmd},
-  {"setGrphTXEQ3", setGrphTXEQ3},
   {"setGrphTXEQ10", setGrphTXEQ10},
+  {"setGrphTXEQ3", setGrphTXEQ3},
   {"setGrphTXEQcmd", setGrphTXEQcmd},
-  {"setSNDSResetSize", setSNDSResetSize},
   {"setMode", setMode},
   {"setNB", setNB},
   {"setNBvals", setNBvals},
@@ -2436,7 +2826,6 @@ CTE update_cmds[] = {
   {"setRXAGC", setRXAGC},
   {"setRXAGCAttack", setRXAGCAttack},
   {"setRXAGCCompression", setRXAGCCompression},
-  {"setRXAGCCompression", setRXAGCCompression},
   {"setRXAGCDecay", setRXAGCDecay},
   {"setRXAGCFix", setRXAGCFix},
   {"setRXAGCHang", setRXAGCHang},
@@ -2444,20 +2833,17 @@ CTE update_cmds[] = {
   {"setRXAGCLimit", setRXAGCLimit},
   {"setRXAGCSlope", setRXAGCSlope},
   {"setRXAGCTop", setRXAGCTop},
-
   {"setRXFiltCoefs", setRXFiltCoefs},
-  {"setTXFiltCoefs", setTXFiltCoefs},
-
   {"setRXListen", setRXListen},
   {"setRXOff", setRXOff},
   {"setRXOn", setRXOn},
-  //  {"setRXGain", setRXGain},
   {"setRXPan", setRXPan},
   {"setRingBufferOffset", setRingBufferOffset},
   {"setRingBufferReset", setRingBufferReset},
   {"setRunState", setRunState},
   {"setSDROM", setSDROM},
   {"setSDROMvals", setSDROMvals},
+  {"setSNDSResetSize", setSNDSResetSize},
   {"setSWCH", setSWCH},
   {"setSpectrumPolyphase", setSpectrumPolyphase},
   {"setSpectrumType", setSpectrumType},
@@ -2466,19 +2852,14 @@ CTE update_cmds[] = {
   {"setSpotToneVals", setSpotToneVals},
   {"setSquelch", setSquelch},
   {"setSquelchSt", setSquelchSt},
-
-  {"SetTEST", setTEST},
-  {"SetTestTone", setTestTone},
-  {"SetTestTwoTone", setTestTwoTone},
-  {"SetTestNoise", setTestNoise},
-  {"SetTestThru", setTestThru},
-
+  {"setTEST", setTEST},
   {"setTRX", setTRX},
   {"setTXAGCFF", setTXAGCFF},
   {"setTXAGCFFCompression", setTXAGCFFCompression},
   {"setTXCarrierLevel", setTXCarrierLevel},
   {"setTXCompand", setTXCompand},
   {"setTXCompandSt", setTXCompandSt},
+  {"setTXFiltCoefs", setTXFiltCoefs},
   {"setTXLevelerAttack", setTXLevelerAttack},
   {"setTXLevelerDecay", setTXLevelerDecay},
   {"setTXLevelerHang", setTXLevelerHang},
@@ -2488,20 +2869,58 @@ CTE update_cmds[] = {
   {"setTXSpeechCompressionGain", setTXSpeechCompressionGain},
   {"setTXSquelch", setTXSquelch},
   {"setTXSquelchSt", setTXSquelchSt},
-
-  /***/
-  // experimental waveshaping/pre-distortion
-
   {"setTXWaveShapeFunc", setTXWaveShapeFunc},
   {"setTXWaveShapeSt", setTXWaveShapeSt},
+  {"setTestNoise", setTestNoise},
+  {"setTestThru", setTestThru},
+  {"setTestTone", setTestTone},
+  {"setTestTwoTone", setTestTwoTone},
+  {"setcorrectIQ", setcorrectIQ},
+  {"setcorrectIQgain", setcorrectIQgain},
+  {"setcorrectIQphase", setcorrectIQphase},
+  {"setcorrectTXIQ", setcorrectTXIQ},
+  {"setcorrectTXIQgain", setcorrectTXIQgain},
+  {"setcorrectTXIQphase", setcorrectTXIQphase},
+  {"setfixedAGC", setfixedAGC},
 
-  /***/
+  {"getANF", getANF},
+  {"getANR", getANR},
+  {"getBIN", getBIN},
+  {"getBlkANF", getBlkNR},
+  {"getBlkNR", getBlkNR},
+  {"getBuflen", getBuflen},
+  {"getDCBLock", getDCBlock},
+  {"getGrphRXEQ", getGrphRXEQ},
+  {"getGrphTXEQ", getGrphTXEQ},
+  {"getNB", getNB},
+  {"getRXAGC", getRXAGC},
+  {"getRXCompand", getRXCompand},
+  {"getRXCount", getRXCount},
+  {"getRXFilter", getRXFilter},
+  {"getRXGain", getRXGain},
+  {"getRXIQ", getRXIQ},
+  {"getRXListen", getRXListen},
+  {"getRXMode", getRXMode},
+  {"getRXOsc", getRXOsc},
+  {"getRXPan", getRXPan},
+  {"getRXSquelch", getRXSquelch},
+  {"getSDROM", getSDROM},
+  {"getSpectrumInfo", getSpectrumInfo},
+  {"getSpotTone", getSpotTone},
+  {"getTEST", getTEST},
+  {"getTRX", getTRX},
+  {"getTXCarrierLevel", getTXCarrierLevel},
+  {"getTXCompand", getTXCompand},
+  {"getTXFilter", getTXFilter},
+  {"getTXGain", getTXGain},
+  {"getTXIQ", getTXIQ},
+  {"getTXLeveler", getTXLeveler},
+  {"getTXMode", getTXMode},
+  {"getTXOsc", getTXOsc},
+  {"getTXSpeechCompression", getTXSpeechCompression},
+  {"getTXSquelch", getTXSquelch},
+  {"getTXWaveShape", getTXWaveShape},
 
-
-
-#if 0
-  {"setMeterType", setMeterType},
-#endif
   {0, 0}
 };
 
@@ -2551,7 +2970,7 @@ do_update(char *str, FILE *log) {
       if (log && !quiet) {
 	int i;
 	char *s = since(&top->start_tv);
-	fprintf(log, "update[%s]: returned %d from", s, val);
+	fprintf(log, "%s update[%s]: returned %d from", top->snds.name, s, val);
 	for (i = 0; i < NF(splt); i++)
 	  fprintf(log, " %s", F(splt, i));
 	putc('\n', log);
@@ -2562,5 +2981,6 @@ do_update(char *str, FILE *log) {
     }
   }
 }
+
 
 //------------------------------------------------------------------------
