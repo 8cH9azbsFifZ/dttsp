@@ -1,0 +1,7 @@
+This is a fork of DttSP. As it was not possible to find a reasonable
+version number, new ones have been defined:
+
+DEFINITION as of 28.08.2011:
+svn co https://www.cgran.org/cgran/projects/dttsp
+0.1 => ab2kt branch
+0.2 => trunk 
