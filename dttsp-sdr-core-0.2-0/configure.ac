@@ -2,11 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.60)
-AC_INIT(dttsp, new, [ab2kt@arrl.net> or <rwmcgwier@gmail.com])
+AC_INIT(dttsp, 0.2, [g@ziegenhain.com])
 #AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AM_INIT_AUTOMAKE([-Werror foreign])
 AM_INIT_AUTOMAKE([])
-AC_CONFIG_SRCDIR([am_demod.c])
+AC_CONFIG_SRCDIR([src/am_demod.c])
 #AC_CONFIG_HEADER([config.h])
 
 AC_CANONICAL_HOST
