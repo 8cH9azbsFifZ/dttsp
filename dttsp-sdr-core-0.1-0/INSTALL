@@ -7,4 +7,4 @@ http://www.jackosx.com/
 Linux
 =====
 Debian
-* apt-get install jackd libjack-dev 
+* apt-get install jackd libjack-dev libgsl0-dev
