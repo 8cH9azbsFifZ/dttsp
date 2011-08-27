@@ -13,6 +13,6 @@ Architecture: any
 Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
-Description: DttDP
+Description: DttSP
  sdr-core a standalone program designed to allow the software construction of transceivers for AM,FM,SSB,CW,... 
  NB: All sources seem to be outdated. This version is only proved to work with sdr-shell-v4.
