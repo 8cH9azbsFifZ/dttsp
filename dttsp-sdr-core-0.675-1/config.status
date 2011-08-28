@@ -442,7 +442,7 @@ Copyright (C) 2010 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/root/dttsp_sdr-core/dttsp-sdr-core-0.675-0'
+ac_pwd='/root/dttsp_sdr-core/dttsp-sdr-core-0.675-1'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -639,7 +639,7 @@ S["build_cpu"]="i486"
 S["build"]="i486-pc-linux-gnu"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run tar"
+S["AMTAR"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
 S["AWK"]="gawk"
@@ -647,12 +647,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/install-sh"
-S["MAKEINFO"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run automake-1.11"
-S["AUTOCONF"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-0/missing --run aclocal-1.11"
+S["install_sh"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/install-sh"
+S["MAKEINFO"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run automake-1.11"
+S["AUTOCONF"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /root/dttsp_sdr-core/dttsp-sdr-core-0.675-1/missing --run aclocal-1.11"
 S["VERSION"]="0.2"
 S["PACKAGE"]="dttsp"
 S["CYGPATH_W"]="echo"
