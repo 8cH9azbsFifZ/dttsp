@@ -1,0 +1,103 @@
+.\"                                      Hey, EMACS: \-*- nroff \-*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH SDR-CORE 1 "August  8, 2010"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+sdr-core \- program to provide SDR processing functions
+.SH SYNOPSIS
+.B sdr-core
+.RI [ options ]
+.SH DESCRIPTION
+This manual page documents briefly the
+.B sdr-core
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fsdr-core\fP is a program that provides software defined radio
+processing.  It is normally run in the background, and communicates
+with other software using network sockets.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.B \-\-verbose, \-v
+Turn on verbose mode (echo commands, etc.).
+.TP
+.B \-\-spectrum, \-s
+Turn on spectrum computation.
+.TP
+.B \-\-metering, \-m
+Turn on meter computation.
+.TP
+.B \-\-load=<load-file>, \-l <load-file>
+Read update commands from <load-file> at startup.
+.TP
+.B \-\-mode=<mode>
+Start radio in mode <mode>.
+.TP
+.B \-\-buffsize=<power-of-2>
+Use <power-of-2> as DSP buffersize.
+.TP
+.B \-\-ringmult=<num>
+Use <num> * <buffsize> for ring buffer length.
+.TP
+.B \-\-spectrum-pport=<portnum>
+Use port <portnum> as conduit for spectrum data.  Default is 19002.
+.TP
+.B \-\-meter-port=<portnum>
+Use port <portnum> as conduit for meter data.  Default is 19003.
+.TP
+.B \-\-command-port=<portnum>
+Use port <portnum> as a conduit for update commands.  Default is 19001
+.TP
+.B \-\-init-path=<init-file>
+Read update commands from <init-file> at startup. Like \-l.
+.TP
+.B \-\-replay-path=<path>
+Write/reread saved update commands to/from <path>.
+.TP
+.B \-\-wisdom-path=<path>
+fftw3 wisdom is in <path>
+.TP
+.B \-\-echo-path=<path>
+Write update command processor output to <path>.
+.TP
+.B \-\-skewoffs=<+/-num>
+Correct for audio channel skew by <num>.
+.TP
+.B \-\-help, \-h
+Write help message and exit.
+
+.SH ENVIRONMENT VARIABLES
+	SDR_DEFMODE
+	SDR_DEFRATE
+	SDR_DEFSIZE
+	SDR_RINGMULT
+	SDR_SKEWOFFS
+	SDR_METERPORT
+	SDR_NAME
+	SDR_PARMPORT
+	SDR_RCBASE
+	SDR_REPLAYPATH
+	SDR_SPECPPORT
+	SDR_WISDOMPATH
+
+.SH AUTHOR
+sdr-core was written by Frank Brickle, AB2KT and Bob McGwier, N4HY.
+.PP
+This manual page was written by Jonathan Marsden <jmarsden@fastmail.fm>,
+for the Debian project (and may be used by others).
