@@ -1,5 +1,5 @@
 Package: dttsp
-Version: 0.2-1
+Version: 0.675-0
 Architecture: i386
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 Installed-Size: 124
@@ -9,6 +9,6 @@ Suggests: usbsoftrock
 Section: hamradio
 Priority: extra
 Homepage: https://www.cgran.org/wiki/DttSP
-Description: DttDP
+Description: DttSP
  sdr-core a standalone program designed to allow the software construction of transceivers for AM,FM,SSB,CW,...
  NB: All sources seem to be outdated. This version is only proved to work with sdr-shell-v4.

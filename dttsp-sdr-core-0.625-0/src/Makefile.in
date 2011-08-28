@@ -37,7 +37,8 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = sdr-core$(EXEEXT)
 subdir = src
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in ChangeLog
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in ChangeLog \
+	depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
