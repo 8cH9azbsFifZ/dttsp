@@ -1,3 +1,9 @@
+dttsp (0.675-0) unstable; urgency=low
+ 
+  * Adjusted to official latest version number.
+
+ -- Dr. Gerolf Ziegenhain <g@ziegenhain.com>  Tue, 28 Aug 2011 22:18:52 +0100
+
 dttsp (0.2-1) unstable; urgency=low
  
   * Refinements in debian package.
