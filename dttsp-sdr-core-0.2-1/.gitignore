@@ -1,6 +1,7 @@
 decomp
-autom4te.cache/
+autom4te.cache/*
 debian/changelog debian/control debian/debhelper.log debian/files debian/rules debian/substvars debian/tmp
 ../dttsp_0.2-0.dsc ../dttsp_0.2-0_i386.changes ../dttsp_0.2-0_i386.deb ../dttsp_0.2-0.tar.gz ../dttsp-sdr-core-0.2-0 ../README
 src/libDttSP.a
 src/sdr-core
+autom4te.cache
