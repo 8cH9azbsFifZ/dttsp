@@ -1,2 +1,4 @@
-This is a fork of DttSP. As it was not possible to find a reasonable
-version number, new ones have been defined:
+This is a fork of DttSP. 
+
+The latest version is r675.
+svn co https://www.cgran.org/cgran/projects/dttsp/branches/ab2kt/sdr-core
