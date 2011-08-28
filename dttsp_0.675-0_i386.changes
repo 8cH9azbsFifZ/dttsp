@@ -9,20 +9,20 @@ Urgency: low
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 Changed-By: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 Description: 
- dttsp      - DttSP
+ dttsp      - DttSP - the core of a Software Defined Radio (SDR) transceiver
 Changes: 
  dttsp (0.675-0) unstable; urgency=low
  .
    * Adjusted to official latest version number.
 Checksums-Sha1: 
- 7aeae5531f222a8cde876481aaa8c6e3cbd58512 683 dttsp_0.675-0.dsc
- c3eeb0e162093ff8b7850dd3bd11edf7d79bc63e 368574 dttsp_0.675-0.tar.gz
- 3958429384dac216543430234b7866366e15521e 39760 dttsp_0.675-0_i386.deb
+ e07bfe949a6d434b8683675652da8ee7d385fe44 713 dttsp_0.675-0.dsc
+ 54442c377900f0166416b5f2bbcca2018a97242e 386158 dttsp_0.675-0.tar.gz
+ 2c20bb17b71b4237f7bed3c43ffb9629e4befe8d 40726 dttsp_0.675-0_i386.deb
 Checksums-Sha256: 
- 67efba055eef94b5112a24a2330a22bd78fc70fc433d413201cb4c0a613ceb5c 683 dttsp_0.675-0.dsc
- 7a30d7d94224fc6ee61e5eb8678584f32d3c2ce69f7d20844e63ad1a544a8d18 368574 dttsp_0.675-0.tar.gz
- 0559b43f88e81da8c11e3fd780c59f8dc14b93a037a7a726c7dee0d3763868e6 39760 dttsp_0.675-0_i386.deb
+ e15da8d88b79a2bd340d30d1d73d134da4a5013dc1a2937a51fb37c1fa1f362e 713 dttsp_0.675-0.dsc
+ d6eb90f9e9495dde04a98159f904614a1c356771c4d5a775c48bdb3eab97c72c 386158 dttsp_0.675-0.tar.gz
+ 945a6748f619d6cca0cc37c29c65027d6243e7c51a172cab5b5a4efff61f0ab1 40726 dttsp_0.675-0_i386.deb
 Files: 
- a676e07ba237cd77264792f26113a891 683 hamradio extra dttsp_0.675-0.dsc
- 2721cce264888a33e3b667b27271a6b3 368574 hamradio extra dttsp_0.675-0.tar.gz
- dd70f09f801e9fe899163b50901c5388 39760 hamradio extra dttsp_0.675-0_i386.deb
+ 05c17b680b47a5883068b842245ec025 713 hamradio extra dttsp_0.675-0.dsc
+ 82c9af8fe314532462e9a38f4ff78558 386158 hamradio extra dttsp_0.675-0.tar.gz
+ ea687425a7b6e6a895aa6905bca1b638 40726 hamradio extra dttsp_0.675-0_i386.deb

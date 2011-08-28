@@ -2,13 +2,12 @@ Package: dttsp
 Version: 0.675-0
 Architecture: i386
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
-Installed-Size: 124
+Installed-Size: 132
 Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
 Section: hamradio
 Priority: extra
 Homepage: https://www.cgran.org/wiki/DttSP
-Description: DttSP
+Description: DttSP - the core of a Software Defined Radio (SDR) transceiver
  sdr-core a standalone program designed to allow the software construction of transceivers for AM,FM,SSB,CW,...
- NB: All sources seem to be outdated. This version is only proved to work with sdr-shell-v4.
