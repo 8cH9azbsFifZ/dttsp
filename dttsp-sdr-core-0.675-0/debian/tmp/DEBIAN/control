@@ -2,7 +2,7 @@ Package: dttsp
 Version: 0.675-0
 Architecture: i386
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
-Installed-Size: 132
+Installed-Size: 144
 Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock

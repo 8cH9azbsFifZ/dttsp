@@ -10,8 +10,8 @@ Vcs-Browser: https://github.com/8cH9azbsFifZ/dttsp_sdr-core
 Vcs-Git: git://github.com/8cH9azbsFifZ/dttsp_sdr-core.git
 Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, libjack-jackd2-dev, automake, autoconf, libtool, liblo-dev
 Checksums-Sha1: 
- 54442c377900f0166416b5f2bbcca2018a97242e 386158 dttsp_0.675-0.tar.gz
+ 26215b4d1a240a822c34b76f1ccfb6fe7d12a3a9 370836 dttsp_0.675-0.tar.gz
 Checksums-Sha256: 
- d6eb90f9e9495dde04a98159f904614a1c356771c4d5a775c48bdb3eab97c72c 386158 dttsp_0.675-0.tar.gz
+ b1bbdd2e4b9d3be0bc9c3e9a8aa22903c16abc2d39d27341cac0f81d28425a79 370836 dttsp_0.675-0.tar.gz
 Files: 
- 82c9af8fe314532462e9a38f4ff78558 386158 dttsp_0.675-0.tar.gz
+ 400056fedfb44eef88052addde4e1dba 370836 dttsp_0.675-0.tar.gz
