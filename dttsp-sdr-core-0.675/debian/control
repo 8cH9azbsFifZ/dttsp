@@ -2,7 +2,7 @@ Source: dttsp
 Section: hamradio 
 Priority: extra 
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
-Standards-Version: 3.8.4
+Standards-Version: 3.9.2
 Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, libjack-jackd2-dev, automake, autoconf, libtool, liblo-dev
 Vcs-Git: git://github.com/8cH9azbsFifZ/dttsp_sdr-core.git
 Vcs-browser: https://github.com/8cH9azbsFifZ/dttsp_sdr-core
@@ -13,5 +13,9 @@ Architecture: any
 Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
-Description: DttSP - the core of a Software Defined Radio (SDR) transceiver
- sdr-core a standalone program designed to allow the software construction of transceivers for AM,FM,SSB,CW,... 
+Description: The core of a Software Defined Radio (SDR) transceiver
+ DttSP implements the basic modulation, demodulation, signal conditioning, 
+ and synchronization processes required to operate a high performance transceiver
+ using DSP as the detection and synthesis stages. 
+ sdr-core a standalone program designed to allow the software construction of 
+ transceivers for AM, FM, SSB, CW, ... 
