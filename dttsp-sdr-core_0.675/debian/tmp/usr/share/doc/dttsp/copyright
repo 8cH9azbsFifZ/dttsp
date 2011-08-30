@@ -1,23 +1,16 @@
-This work was packaged for Debian by: 
-    Dr. Gerolf Ziegenhain <g@ziegenhain.com> on Sun, 28 Aug 2011 22:46:23 +0100
+This package was debianized by Dr. Gerolf Ziegenhain <g@ziegenhain.com> on
+Wed, 31 Aug 2011 01:17:52 +0100.
 
-It was downloaded from:
-
-    The subversion repository at https://www.cgran.org/cgran/projects/dttsp/branches/ab2kt/sdr-core/base
+It was downloaded from the subversion repository at https://www.cgran.org/cgran/projects/dttsp/branches/ab2kt/sdr-core/base
 
 Upstream Author(s):
-
-    Dr. Frank Brickle, AB2KT 
-    Dr. Bob McGwier, N4HY
+ Dr. Frank Brickle, AB2KT 
+ Dr. Bob McGwier, N4HY
 
 Copyright:
+ Copyright (C) 2004 - 2011 by Dr. Frank Brickle, AB2KT and Dr. Bob McGwier, N4HY
 
-    Copyright (C) 2004 - 2011 by Dr. Frank Brickle, AB2KT and Dr. Bob McGwier, N4HY
+sdr-shell is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 
-On Debian systems, the complete text of the GNU General
-Public License version 3 can be found in `/usr/share/common-licenses/GPL-3'.
-
-The Debian packaging is: 
-    Copyright (C) 2011 Dr. Gerolf Ziegenhain <g@ziegenhain.com> 
-and is licensed under the GPL version 3, see above.
-
+The Debian packaging is (C) 2011, Dr. Gerolf Ziegenhain <g@ziegenhain.com> and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
