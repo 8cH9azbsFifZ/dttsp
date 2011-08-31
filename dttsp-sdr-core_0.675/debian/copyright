@@ -1,14 +1,11 @@
 This package was debianized by Dr. Gerolf Ziegenhain <g@ziegenhain.com> on
-Wed, 31 Aug 2011 01:17:52 +0100.
+Wed, 01 Sep 2011 00:37:52 +0100.
 
 It was downloaded from the subversion repository at https://www.cgran.org/cgran/projects/dttsp/branches/ab2kt/sdr-core/base
 
-Upstream Author(s):
- Dr. Frank Brickle, AB2KT 
- Dr. Bob McGwier, N4HY
+Upstream Author(s): Dr. Frank Brickle (AB2KT) and Dr. Bob McGwier (N4HY)
 
-Copyright:
- Copyright (C) 2004 - 2011 by Dr. Frank Brickle, AB2KT and Dr. Bob McGwier, N4HY
+Copyright: Copyright (C) 2004 - 2011 by Dr. Frank Brickle (AB2KT) and Dr. Bob McGwier (N4HY)
 
 sdr-shell is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 

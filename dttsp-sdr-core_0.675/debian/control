@@ -13,9 +13,9 @@ Architecture: any
 Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
-Description: The core of a Software Defined Radio (SDR) transceiver
+Description: Core of a Software Defined Radio (SDR) transceiver
  DttSP implements the basic modulation, demodulation, signal conditioning, 
- and synchronization processes required to operate a high performance transceiver
- using DSP as the detection and synthesis stages. 
+ and synchronization processes required to operate a high performance 
+ transceiver using DSP as the detection and synthesis stages. 
  sdr-core a standalone program designed to allow the software construction of 
  transceivers for AM, FM, SSB, CW, ... 
