@@ -1,4 +1,5 @@
-cd dtt*
+rm *.changes *.upload
+cd dttsp*
 #make clean
 rm debian/debhelper.log
 
@@ -6,9 +7,9 @@ rm debian/debhelper.log
 #mv sdr*gz ..
 
 #checksum not updated
-#debuild
-debuild -S
-dpkg-buildpackage
+debuild
+#debuild -S
+#dpkg-buildpackage
 
 cd ..
 cd sdr-she*
@@ -22,6 +23,6 @@ git push
 lintian --pedantic --all *dsc
 lintian  *deb
 
-for f in *changes; do
-dput -l debexpo $f
-done
+#for f in *changes; do
+#dput -l debexpo $f
+#done
