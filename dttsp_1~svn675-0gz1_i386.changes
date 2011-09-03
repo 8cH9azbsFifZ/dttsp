@@ -1,0 +1,53 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Tue, 28 Aug 2011 23:11:52 +0100
+Source: dttsp
+Binary: dttsp
+Architecture: source i386
+Version: 1~svn675-0gz1
+Distribution: unstable
+Urgency: low
+Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+Changed-By: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+Description: 
+ dttsp      - Core of a Software Defined Radio (SDR) transceiver
+Changes: 
+ dttsp (1~svn675-0gz1) unstable; urgency=low
+ .
+   * Added man page for sdr-core.
+   * Adjusted to official latest version number.
+Checksums-Sha1: 
+ fbf72aad280cb8e880653883ce2353fa819f5921 1878 dttsp_1~svn675-0gz1.dsc
+ 711e87a878d6e5a9ff4b50d6351b6af70b9b1d04 294639 dttsp_1~svn675.orig.tar.gz
+ 14ea655fba495d4e2b7acbbf825226a5291adb82 227089 dttsp_1~svn675-0gz1.debian.tar.gz
+ 45cfd0bed8b522e4385b3d9203694cdfde17879d 3410 dttsp_1~svn675-0gz1_i386.deb
+Checksums-Sha256: 
+ 5184227973cfdc4ceb2d796987bc3f3164805f7a3e3e381ccec66a5224a71736 1878 dttsp_1~svn675-0gz1.dsc
+ 0d6871348e2838d2664a96227a64dd33f6722fa4531703575b830ad13d6a3db2 294639 dttsp_1~svn675.orig.tar.gz
+ fee1f6a478713932db1de2922e44ea428a6b70d286c6a141b401e836f332cc6f 227089 dttsp_1~svn675-0gz1.debian.tar.gz
+ 2b8c3b6e199430087f7fa1639ea7bd738c7705e2a166438b744ec68a14eceba7 3410 dttsp_1~svn675-0gz1_i386.deb
+Files: 
+ 34c69bd2c92224eaa3bda5f35aeaa3c1 1878 hamradio extra dttsp_1~svn675-0gz1.dsc
+ 3d82409f8a1721d3cfae73b442040b47 294639 hamradio extra dttsp_1~svn675.orig.tar.gz
+ c2195a613203977bb28aafea3a2fd135 227089 hamradio extra dttsp_1~svn675-0gz1.debian.tar.gz
+ 9490b0c1127b41fbbec69466672e9da1 3410 hamradio extra dttsp_1~svn675-0gz1_i386.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iQIcBAEBCAAGBQJOYnUeAAoJEFkTlKde1nyTzAUQANblOUaoWOz1FpfEfeFM6do6
+YNd07oDv34K7TRFX8fgWNY9JTXflctiYoZyICZ1n4GJfev6xjbrPU2FEH/MzRE5Z
+7Ol/HGhD+pe0/a4CRAJzBLFUhPJTtwp9fDiBKWbknPVkzhRflreiNxuEa+y3WdzQ
+0lG5J3XqhwGUBgv3CMqt8dZu8I020K/+HG/iW6y43li+hLqG7iTZ0YObO50Xcfv3
+fwhlnoiDOvaT6RM9DMEx0IJji1UzbrJDyzeSYi98hwKuPocBXqZKZjtwXD6WqfDr
+tUWnzbnwVWiPpLfj9sza4KGSDACAXmnzkcR3wM4eVIWsADiXrrVE3zjNYQYulGSE
+VA7KFd24wuWv18sjUlASFqBD2tCSrM8ZJ1AePcOZR/m91lAUdbmqsGuE5eX15Aso
+FgoeyiHwSbuDVDgv01T9njuFupsRIaB9pMxRNolqrhc+LgmAxDOHGr85x8RWRkbT
+dEbi5Kn2LTbSQHjYcWuSSOlaHYMZjzWVxU8KUEhz4vCYCdIAXOdmWMUFYPrVs0Df
+kTzmhbV42qJsswpXiF/bUzpAqN9r9QS278qc58C7GNkQWgTrU390XrTNSgs4N0RM
++0Crv9p7GraljSBrmcHS+U/zFaQ7thHdej0BAw4pSlg16ihul7xZjdNky5bLTBBT
+sOJAW1djQ7lhv41AHQI5
+=rQs5
+-----END PGP SIGNATURE-----
