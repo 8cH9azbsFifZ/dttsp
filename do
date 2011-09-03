@@ -13,7 +13,6 @@ debuild
 
 cd ..
 cd dttsp*
-make clean
 rm debian/debhelper.log
 cd ..
 
