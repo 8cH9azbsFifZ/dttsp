@@ -22,6 +22,6 @@ git push
 lintian --pedantic --all *dsc
 lintian  *deb
 
-#for f in *changes; do
-#dput -l debexpo $f
-#done
+for f in *changes; do
+dput -l debexpo $f
+done
