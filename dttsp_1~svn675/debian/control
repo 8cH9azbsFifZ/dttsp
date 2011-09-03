@@ -10,7 +10,7 @@ Homepage: https://www.cgran.org/wiki/DttSP
 
 Package: dttsp 
 Architecture: any
-Depends: libfftw3-3, mime-support, liblo7, libc6-i686, gawk, libjack-jackd2-0, jackd2
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Recommends: sdr-shell (>= 4.0)
 Suggests: usbsoftrock
 Description: Core of a Software Defined Radio (SDR) transceiver
