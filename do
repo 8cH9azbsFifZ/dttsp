@@ -8,7 +8,7 @@ rm debian/debhelper.log
 
 #checksum not updated
 debuild
-#debuild -S
+debuild -S
 #dpkg-buildpackage
 
 cd ..
