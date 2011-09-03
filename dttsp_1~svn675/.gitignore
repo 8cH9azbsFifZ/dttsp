@@ -5,3 +5,4 @@ debian/changelog debian/control debian/debhelper.log debian/files debian/rules d
 src/libDttSP.a
 src/sdr-core
 autom4te.cache
+.pc
