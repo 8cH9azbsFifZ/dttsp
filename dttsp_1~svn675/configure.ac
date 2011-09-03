@@ -2,11 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.60)
-AC_INIT(dttsp, 0.2, [g@ziegenhain.com])
+AC_INIT(dttsp, new, [ab2kt@arrl.net> or <rwmcgwier@gmail.com])
 #AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AM_INIT_AUTOMAKE([-Werror foreign])
 AM_INIT_AUTOMAKE([])
-AC_CONFIG_SRCDIR([src/am_demod.c])
+AC_CONFIG_SRCDIR([am_demod.c])
 #AC_CONFIG_HEADER([config.h])
 
 AC_CANONICAL_HOST
@@ -31,8 +31,6 @@ AC_CHECK_LIB([jack], [jack_connect], ,
 	[AC_MSG_ERROR("Could not find library jack.")])
 AC_CHECK_LIB([m], [pow])
 AC_CHECK_LIB([pthread], [pthread_create])
-AC_CHECK_LIB([lo], [lo_address_new], ,
-	[AC_MSG_ERROR("Could not find library liblo.")])
 
 # Checks for header files.
 AC_HEADER_STDC
@@ -52,5 +50,5 @@ AC_PROG_GCC_TRADITIONAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([floor gettimeofday memset pow sqrt])
 
-AC_CONFIG_FILES([src/Makefile Makefile])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
