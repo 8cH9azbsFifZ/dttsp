@@ -12,7 +12,7 @@ debuild
 #dpkg-buildpackage
 
 cd ..
-cd sdr-she*
+cd dttsp*
 make clean
 rm debian/debhelper.log
 cd ..

@@ -1,2 +1,0 @@
-shlibs:Depends=libc6 (>= 2.1.1), libc6 (>= 2.3.6-6~), libfftw3-3, libjack-jackd2-0 (>= 1.9.5~dfsg-14) | libjack-0.116, liblo7 (>= 0.26~repack)
-misc:Depends=
