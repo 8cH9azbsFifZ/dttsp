@@ -1,5 +1,6 @@
 dttsp (0~svn675-0gz2) unstable; urgency=low
  
+  * Initial Debian release.
   * Added man page for sdr-core.
   * Adjusted to official latest version number.
 
