@@ -44,8 +44,13 @@ dpkg-source: warning: ignoring deletion of file bin/duplex-conn
 dpkg-source: info: local changes stored in dttsp_0~svn675/debian/patches/debian-changes, the modified files are:
  dttsp_0~svn675/src/Makefile.in
  dttsp_0~svn675/src/aclocal.m4
+ dttsp_0~svn675/src/config.guess
  dttsp_0~svn675/src/config.log
+ dttsp_0~svn675/src/config.sub
  dttsp_0~svn675/src/configure
+ dttsp_0~svn675/src/depcomp
+ dttsp_0~svn675/src/install-sh
+ dttsp_0~svn675/src/missing
 dpkg-source: info: building dttsp in dttsp_0~svn675-0gz2.debian.tar.gz
 dpkg-source: info: building dttsp in dttsp_0~svn675-0gz2.dsc
  debian/rules build
@@ -54,7 +59,192 @@ dh --add-missing --with autoreconf -Dsrc build
    dh_autoreconf -O--add-missing -O-Dsrc
    dh_auto_configure -O--add-missing -O-Dsrc
 configure: WARNING: unrecognized options: --disable-maintainer-mode
-configure: error: cannot find install-sh, install.sh, or shtool in "." "./.." "./../.."
-dh_auto_configure: ./configure --build=i486-linux-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --libexecdir=${prefix}/lib/dttsp --disable-maintainer-mode --disable-dependency-tracking returned exit code 1
-make: *** [build] Error 2
-dpkg-buildpackage: error: debian/rules build gave error exit status 2
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking build system type... i486-pc-linux-gnu
+checking host system type... i486-pc-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking for ranlib... ranlib
+checking for fftwf_execute in -lfftw3f... yes
+checking for jack_connect in -ljack... yes
+checking for pow in -lm... yes
+checking for pthread_create in -lpthread... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for size_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for uid_t in sys/types.h... yes
+checking whether gcc needs -traditional... no
+checking whether lstat correctly handles trailing slash... yes
+checking whether stat accepts an empty string... no
+checking for floor... yes
+checking for gettimeofday... yes
+checking for memset... yes
+checking for pow... yes
+checking for sqrt... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: executing depfiles commands
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+   dh_auto_build -O--add-missing -O-Dsrc
+make[1]: Entering directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c am_demod.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c banal.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c bufvec.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c correctIQ.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c cwtones.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c cxops.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c dcblock.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c dttspagc.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c fastrig.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c filter.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c fm_demod.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c graphiceq.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c halfband.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c hilbert.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c isoband.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c lmadf.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c meter.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c noiseblanker.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c oscillator.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c ovsv.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c resample.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c ringb.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c sdr.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c spectrum.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c speechproc.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c splitfields.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c spottone.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c thunk.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c window.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c waveshape.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c wscompand.c
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c update.c
+rm -f libDttSP.a
+ar cru libDttSP.a am_demod.o banal.o bufvec.o correctIQ.o cwtones.o cxops.o dcblock.o dttspagc.o fastrig.o filter.o fm_demod.o graphiceq.o halfband.o hilbert.o isoband.o lmadf.o meter.o noiseblanker.o oscillator.o ovsv.o resample.o ringb.o sdr.o spectrum.o speechproc.o splitfields.o spottone.o thunk.o window.o waveshape.o wscompand.o update.o 
+ranlib libDttSP.a
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c sdr-main.c
+sdr-main.c: In function ‘setup_system_audio’:
+sdr-main.c:621: warning: ‘jack_client_new’ is deprecated (declared at /usr/include/jack/jack.h:122)
+gcc -DPACKAGE_NAME=\"dttsp\" -DPACKAGE_TARNAME=\"dttsp\" -DPACKAGE_VERSION=\"new\" -DPACKAGE_STRING=\"dttsp\ new\" -DPACKAGE_BUGREPORT=\"ab2kt@arrl.net\>\ or\ \<rwmcgwier@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"dttsp\" -DVERSION=\"new\" -DHAVE_LIBFFTW3F=1 -DHAVE_LIBJACK=1 -DHAVE_LIBM=1 -DHAVE_LIBPTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_FLOOR=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -I.     -g -O2 -c sdrexport.c
+gcc  -g -O2   -o sdr-core sdr-main.o sdrexport.o libDttSP.a -lpthread -lm -ljack -lfftw3f 
+make[1]: Leaving directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+   dh_auto_test -O--add-missing -O-Dsrc
+ fakeroot debian/rules binary
+dh --add-missing --with autoreconf -Dsrc binary
+   dh_testroot -O--add-missing -O-Dsrc
+   dh_prep -O--add-missing -O-Dsrc
+   dh_installdirs -O--add-missing -O-Dsrc
+   dh_auto_install -O--add-missing -O-Dsrc
+make[1]: Entering directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+make[2]: Entering directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+test -z "/usr/bin" || /bin/mkdir -p "/root/dttsp_sdr-core/dttsp_0~svn675/debian/dttsp/usr/bin"
+  /usr/bin/install -c sdr-core '/root/dttsp_sdr-core/dttsp_0~svn675/debian/dttsp/usr/bin'
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+make[1]: Leaving directory `/root/dttsp_sdr-core/dttsp_0~svn675/src'
+   dh_install -O--add-missing -O-Dsrc
+   dh_installdocs -O--add-missing -O-Dsrc
+   dh_installchangelogs -O--add-missing -O-Dsrc
+   dh_installexamples -O--add-missing -O-Dsrc
+   dh_installman -O--add-missing -O-Dsrc
+   dh_installcatalogs -O--add-missing -O-Dsrc
+   dh_installcron -O--add-missing -O-Dsrc
+   dh_installdebconf -O--add-missing -O-Dsrc
+   dh_installemacsen -O--add-missing -O-Dsrc
+   dh_installifupdown -O--add-missing -O-Dsrc
+   dh_installinfo -O--add-missing -O-Dsrc
+   dh_pysupport -O--add-missing -O-Dsrc
+   dh_installinit -O--add-missing -O-Dsrc
+   dh_installmenu -O--add-missing -O-Dsrc
+   dh_installmime -O--add-missing -O-Dsrc
+   dh_installmodules -O--add-missing -O-Dsrc
+   dh_installlogcheck -O--add-missing -O-Dsrc
+   dh_installlogrotate -O--add-missing -O-Dsrc
+   dh_installpam -O--add-missing -O-Dsrc
+   dh_installppp -O--add-missing -O-Dsrc
+   dh_installudev -O--add-missing -O-Dsrc
+   dh_installwm -O--add-missing -O-Dsrc
+   dh_installxfonts -O--add-missing -O-Dsrc
+   dh_bugfiles -O--add-missing -O-Dsrc
+   dh_lintian -O--add-missing -O-Dsrc
+   dh_gconf -O--add-missing -O-Dsrc
+   dh_icons -O--add-missing -O-Dsrc
+   dh_perl -O--add-missing -O-Dsrc
+   dh_usrlocal -O--add-missing -O-Dsrc
+   dh_link -O--add-missing -O-Dsrc
+   dh_compress -O--add-missing -O-Dsrc
+   dh_fixperms -O--add-missing -O-Dsrc
+   dh_strip -O--add-missing -O-Dsrc
+   dh_makeshlibs -O--add-missing -O-Dsrc
+   dh_shlibdeps -O--add-missing -O-Dsrc
+   dh_installdeb -O--add-missing -O-Dsrc
+   dh_gencontrol -O--add-missing -O-Dsrc
+   dh_md5sums -O--add-missing -O-Dsrc
+   dh_builddeb -O--add-missing -O-Dsrc
+dpkg-deb: building package `dttsp' in `../dttsp_0~svn675-0gz2_i386.deb'.
+ dpkg-genchanges  >../dttsp_0~svn675-0gz2_i386.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build dttsp_0~svn675
+dpkg-source: info: using options from dttsp_0~svn675/debian/source/local-options: --unapply-patches --single-debian-patch
+dpkg-source: info: unapplying debian-changes
+dpkg-source: error: LC_ALL=C patch -R -t -N -p1 -u -V never -g0 -E --no-backup-if-mismatch < dttsp_0~svn675/debian/patches/debian-changes gave error exit status 1
+patching file src/install-sh
+patching file src/aclocal.m4
+patching file src/depcomp
+patching file src/config.sub
+patching file src/config.log
+Unreversed patch detected!  Skipping patch.
+1 out of 1 hunk ignored -- saving rejects to file src/config.log.rej
+patching file src/configure
+patching file src/missing
+patching file src/Makefile.in
+patching file src/config.guess
+dpkg-buildpackage: error: dpkg-source --after-build dttsp_0~svn675 gave error exit status 1
