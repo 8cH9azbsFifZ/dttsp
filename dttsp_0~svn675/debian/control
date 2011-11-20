@@ -3,7 +3,7 @@ Section: hamradio
 Priority: extra 
 Maintainer: Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 Standards-Version: 3.9.2
-Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, libjack-jackd2-dev, automake, autoconf, libtool, liblo-dev
+Build-Depends: libfftw3-dev, debhelper (>= 7.0.50), libjack-jackd2-0, libjack-jackd2-dev, liblo-dev
 Vcs-Git: git://github.com/8cH9azbsFifZ/dttsp.git
 Vcs-browser: https://github.com/8cH9azbsFifZ/dttsp
 Homepage: https://www.cgran.org/wiki/DttSP
