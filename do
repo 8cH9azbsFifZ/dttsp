@@ -1,5 +1,6 @@
+# Cleanup
 rm *.changes *.upload
-cd dttsp*
+cd dttsp*;
 #make clean
 rm debian/debhelper.log
 
@@ -10,12 +11,6 @@ rm debian/debhelper.log
 debuild || exit
 debuild -S || exit 
 #dpkg-buildpackage
-
-# Remove logfiles
-cd ..
-cd dttsp*
-rm debian/debhelper.log
-cd ..
 
 git commit -a -m "new build"
 
