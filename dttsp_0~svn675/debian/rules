@@ -1,5 +1,19 @@
 #!/usr/bin/make -f
 
+
+#ifndef _cdbs_class_autotools_generate
+_cdbs_class_autotools_generate = 1
+DEB_ACLOCAL_PARAMS = --force
+DEB_AUTOHEADER_PARAMS = --force
+DEB_AUTOMAKE_PARAMS = --add-missing --copy --force --include-deps --foreign
+DEB_LIBTOOLIZE_PARAMS = --force --copy
+DEB_AUTOCONF_PARAMS = --force
+
+define autotools_generate_deps
+CDBS_BUILD_DEPENDS := $$(CDBS_BUILD_DEPENDS), $(1)
+endef
+#endif
+
 REV=$(shell dpkg-parsechangelog | sed -rne 's,^Version: .*[+~]svn([0-9]+).*,\1,p')
 VER=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
 
