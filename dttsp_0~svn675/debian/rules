@@ -6,7 +6,7 @@ VER=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
 get-orig-source:
 	rm -rf dttsp-$(VER).orig
 	svn -q export -r $(REV) https://www.cgran.org/cgran/projects/dttsp/trunk/sdr-core/base dttsp-$(VER).orig
-	GZIP=--best tar -cz --owner root --group root --mode a+rX \
+	GZIP=--best tar -chz --owner root --group root --mode a+rX \
 		-f dttsp_$(VER).orig.tar.gz \
 		dttsp-$(VER).orig
 	rm -r dttsp-$(VER).orig
