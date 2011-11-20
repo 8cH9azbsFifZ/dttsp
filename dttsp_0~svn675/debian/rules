@@ -2,6 +2,7 @@
 
 REV=$(shell dpkg-parsechangelog | sed -rne 's,^Version: .*[+~]svn([0-9]+).*,\1,p')
 VER=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
+DEB_AUTO_UPDATE_AUTOMAKE = --add-missing
 
 get-orig-source:
 	rm -rf dttsp-$(VER).orig
@@ -13,4 +14,4 @@ get-orig-source:
 	rm -r dttsp-$(VER).orig
 
 %:
-	dh --with autoreconf -Dsrc $@
+	dh --add-missing --with autoreconf -Dsrc $@
