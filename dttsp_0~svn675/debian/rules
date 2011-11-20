@@ -13,4 +13,6 @@ get-orig-source:
 	rm -r dttsp-$(VER).orig
 
 %:
-	dh -Dsrc $@
+	#dh --before autofoo
+	#dh --after autofoo
+	dh $@ --with autoreconf -Dsrc
