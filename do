@@ -3,8 +3,9 @@ cd dttsp*
 #make clean
 rm debian/debhelper.log
 
-#./debian/rules get-orig-source
-#mv sdr*gz ..
+# Get sources
+./debian/rules get-orig-source
+mv sdr*gz ..
 
 # Build package #checksum not updated
 debuild
