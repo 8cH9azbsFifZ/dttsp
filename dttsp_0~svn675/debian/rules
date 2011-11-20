@@ -12,5 +12,5 @@ get-orig-source:
 	rm -r dttsp-$(VER).orig
 
 %:
-	#dh -Dsrc $@
-	dh $@
+	dh -Dsrc $@
+	#dh $@

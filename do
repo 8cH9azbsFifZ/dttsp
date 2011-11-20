@@ -7,7 +7,7 @@ rm debian/debhelper.log
 [ -e ../*gz ] || ( ./debian/rules get-orig-source ; mv *gz .. )
 
 # Build package #checksum not updated
-debuild
+debuild 
 debuild -S
 #dpkg-buildpackage
 
