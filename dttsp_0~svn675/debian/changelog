@@ -1,7 +1,7 @@
-dttsp (1~svn675-0gz1) unstable; urgency=low
+dttsp (0~svn675-0gz2) unstable; urgency=low
  
   * Added man page for sdr-core.
   * Adjusted to official latest version number.
 
- -- Dr. Gerolf Ziegenhain <g@ziegenhain.com>  Tue, 28 Aug 2011 23:11:52 +0100
+ -- Dr. Gerolf Ziegenhain <g@ziegenhain.com>  Tue, 20 Nov 2011 08:11:52 +0100
 
