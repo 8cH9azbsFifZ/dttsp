@@ -5,7 +5,7 @@ rm debian/debhelper.log
 
 # Get sources
 ./debian/rules get-orig-source
-mv sdr*gz ..
+mv *gz ..
 
 # Build package #checksum not updated
 debuild
