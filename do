@@ -17,11 +17,12 @@ rm debian/debhelper.log
 cd ..
 
 git commit -a -m "new build"
-git push
 
 lintian --pedantic --all *dsc
 lintian  *deb
 
-for f in *changes; do
-dput -l debexpo $f
-done
+# Upload
+#git push
+#for f in *changes; do
+#dput -l debexpo $f
+#done
