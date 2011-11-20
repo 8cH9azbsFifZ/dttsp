@@ -1,7 +1,7 @@
 This patch contains all the Debian-specific
 changes mixed together. 
 --- /dev/null
-+++ dttsp-1~svn675/bufvec.h
++++ dttsp-0~svn675/bufvec.h
 @@ -0,0 +1,119 @@
 +/* bufvec.h
 +
@@ -123,7 +123,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/configure.ac
++++ dttsp-0~svn675/configure.ac
 @@ -0,0 +1,54 @@
 +#                                               -*- Autoconf -*-
 +# Process this file with autoconf to produce a configure script.
@@ -180,7 +180,7 @@ changes mixed together.
 +AC_CONFIG_FILES([Makefile])
 +AC_OUTPUT
 --- /dev/null
-+++ dttsp-1~svn675/graphiceq.h
++++ dttsp-0~svn675/graphiceq.h
 @@ -0,0 +1,75 @@
 +/* graphiceq.h
 + * 
@@ -258,7 +258,7 @@ changes mixed together.
 +
 +#endif /* #define GRPHEQ_H */
 --- /dev/null
-+++ dttsp-1~svn675/noiseblanker.h
++++ dttsp-0~svn675/noiseblanker.h
 @@ -0,0 +1,52 @@
 +/* noiseblanker.h
 +   
@@ -313,7 +313,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/cxops.h
++++ dttsp-0~svn675/cxops.h
 @@ -0,0 +1,418 @@
 +/* cxops.h
 +This file is part of a program that implements a Software-Defined Radio.
@@ -734,7 +734,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/spectrum.c
++++ dttsp-0~svn675/spectrum.c
 @@ -0,0 +1,204 @@
 +/** 
 +* @file spectrum.c
@@ -941,7 +941,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/fm_demod.h
++++ dttsp-0~svn675/fm_demod.h
 @@ -0,0 +1,81 @@
 +/* fm_demod.h */
 +/*
@@ -1025,7 +1025,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/meter.c
++++ dttsp-0~svn675/meter.c
 @@ -0,0 +1,76 @@
 +/** 
 +* @file meter.c
@@ -1104,7 +1104,7 @@ changes mixed together.
 +  mb->last = METER_LAST_TX;
 +}
 --- /dev/null
-+++ dttsp-1~svn675/filter.c
++++ dttsp-0~svn675/filter.c
 @@ -0,0 +1,689 @@
 +/** 
 +* @file filter.c
@@ -1796,7 +1796,7 @@ changes mixed together.
 +}
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/complex.h
++++ dttsp-0~svn675/complex.h
 @@ -0,0 +1,46 @@
 +/* complex.h
 +
@@ -1845,7 +1845,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/meter.h
++++ dttsp-0~svn675/meter.h
 @@ -0,0 +1,125 @@
 +/* meter.h */
 +/*
@@ -1973,7 +1973,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/wscompand.h
++++ dttsp-0~svn675/wscompand.h
 @@ -0,0 +1,61 @@
 +/*
 +* wscompand.h
@@ -2037,7 +2037,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/window.c
++++ dttsp-0~svn675/window.c
 @@ -0,0 +1,196 @@
 +/** 
 +* @file window.c
@@ -2236,7 +2236,7 @@ changes mixed together.
 +  return window;
 +}
 --- /dev/null
-+++ dttsp-1~svn675/thunk.h
++++ dttsp-0~svn675/thunk.h
 @@ -0,0 +1,46 @@
 +/* thunk.c
 +
@@ -2285,7 +2285,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/correctIQ.h
++++ dttsp-0~svn675/correctIQ.h
 @@ -0,0 +1,52 @@
 +/* correctIQ.h
 +
@@ -2340,7 +2340,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/window.h
++++ dttsp-0~svn675/window.h
 @@ -0,0 +1,75 @@
 +/* window.h
 +
@@ -2418,7 +2418,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/filterbank.h
++++ dttsp-0~svn675/filterbank.h
 @@ -0,0 +1,81 @@
 +// filterbank.h
 +/*
@@ -2502,7 +2502,7 @@ changes mixed together.
 +extern void runSynthesisFilterBankOVSV(FilterBank p);
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/install-sh
++++ dttsp-0~svn675/install-sh
 @@ -0,0 +1,520 @@
 +#!/bin/sh
 +# install - install a program, script, or datafile
@@ -3025,7 +3025,7 @@ changes mixed together.
 +# time-stamp-end: "; # UTC"
 +# End:
 --- /dev/null
-+++ dttsp-1~svn675/dcblock.c
++++ dttsp-0~svn675/dcblock.c
 @@ -0,0 +1,97 @@
 +/** 
 +* @file dcblock.c
@@ -3125,7 +3125,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/DoxyFile
++++ dttsp-0~svn675/DoxyFile
 @@ -0,0 +1,1462 @@
 +# Doxyfile 1.5.7
 +
@@ -4590,7 +4590,7 @@ changes mixed together.
 +
 +SEARCHENGINE           = NO
 --- /dev/null
-+++ dttsp-1~svn675/bufvec.c
++++ dttsp-0~svn675/bufvec.c
 @@ -0,0 +1,429 @@
 +/** 
 +* @file bufvec.c
@@ -5022,7 +5022,7 @@ changes mixed together.
 +    SVdata(sv, i) = val;
 +}
 --- /dev/null
-+++ dttsp-1~svn675/delay.c
++++ dttsp-0~svn675/delay.c
 @@ -0,0 +1,46 @@
 +// delay.c
 +/*
@@ -5071,7 +5071,7 @@ changes mixed together.
 +  
 +}
 --- /dev/null
-+++ dttsp-1~svn675/mkpipes.sh
++++ dttsp-0~svn675/mkpipes.sh
 @@ -0,0 +1,16 @@
 +#!/bin/sh
 +
@@ -5090,7 +5090,7 @@ changes mixed together.
 +    mkfifo $METERPIPE
 +fi
 --- /dev/null
-+++ dttsp-1~svn675/datatypes.h
++++ dttsp-0~svn675/datatypes.h
 @@ -0,0 +1,56 @@
 +/* datatypes.h
 +   local definitions and aliases for our data
@@ -5149,7 +5149,7 @@ changes mixed together.
 +#include <banal.h>
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/bootstrap
++++ dttsp-0~svn675/bootstrap
 @@ -0,0 +1,6 @@
 +#!/bin/sh
 +
@@ -5158,7 +5158,7 @@ changes mixed together.
 +touch NEWS README AUTHORS ChangeLog
 +automake -a
 --- /dev/null
-+++ dttsp-1~svn675/filter.h
++++ dttsp-0~svn675/filter.h
 @@ -0,0 +1,113 @@
 +/* filter.h
 +This file is part of a program that implements a Software-Defined Radio.
@@ -5274,7 +5274,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/wav2z.py
++++ dttsp-0~svn675/wav2z.py
 @@ -0,0 +1,71 @@
 +#!/usr/bin/env python
 +
@@ -5348,7 +5348,7 @@ changes mixed together.
 +owav.close()
 +
 --- /dev/null
-+++ dttsp-1~svn675/wvnr.py
++++ dttsp-0~svn675/wvnr.py
 @@ -0,0 +1,48 @@
 +#!/usr/bin/env python
 +
@@ -5399,7 +5399,7 @@ changes mixed together.
 +
 +        return array([self.odat_i, self.odat_q])
 --- /dev/null
-+++ dttsp-1~svn675/dttspagc.h
++++ dttsp-0~svn675/dttspagc.h
 @@ -0,0 +1,107 @@
 +/* dttspagc.h
 +
@@ -5509,7 +5509,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/keyer.mk
++++ dttsp-0~svn675/keyer.mk
 @@ -0,0 +1,17 @@
 +CFLAGS = -O3 -I.
 +#CFLAGS = -g -O -I.
@@ -5529,7 +5529,7 @@ changes mixed together.
 +			 ../bin/iambic-keyer ../bin/keyboard-keyer 
 +
 --- /dev/null
-+++ dttsp-1~svn675/Makefile.am
++++ dttsp-0~svn675/Makefile.am
 @@ -0,0 +1,77 @@
 +bin_PROGRAMS = sdr-core
 +sdr_core_SOURCES = 	sdr-main.c sdrexport.c
@@ -5609,7 +5609,7 @@ changes mixed together.
 +	keyer.h\
 +	local.h
 --- /dev/null
-+++ dttsp-1~svn675/aclocal.m4
++++ dttsp-0~svn675/aclocal.m4
 @@ -0,0 +1,951 @@
 +# generated automatically by aclocal 1.11.1 -*- Autoconf -*-
 +
@@ -6563,7 +6563,7 @@ changes mixed together.
 +]) # _AM_PROG_TAR
 +
 --- /dev/null
-+++ dttsp-1~svn675/depcomp
++++ dttsp-0~svn675/depcomp
 @@ -0,0 +1,630 @@
 +#! /bin/sh
 +# depcomp - compile a program generating dependencies as side-effects
@@ -7196,7 +7196,7 @@ changes mixed together.
 +# time-stamp-end: "; # UTC"
 +# End:
 --- /dev/null
-+++ dttsp-1~svn675/shared.mk
++++ dttsp-0~svn675/shared.mk
 @@ -0,0 +1,55 @@
 +CFLAGS = -fPIC -O3 -g -I.
 +SHAREDLIBS = -L ../lib -lDttSP -ljack -lpthread -lfftw3f -lm
@@ -7254,7 +7254,7 @@ changes mixed together.
 +install:	sdr-core-shared
 +	mv sdr-core ../bin
 --- /dev/null
-+++ dttsp-1~svn675/cwtones.h
++++ dttsp-0~svn675/cwtones.h
 @@ -0,0 +1,79 @@
 +/* spottone.h */
 +/*
@@ -7336,7 +7336,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/config.sub
++++ dttsp-0~svn675/config.sub
 @@ -0,0 +1,1714 @@
 +#! /bin/sh
 +# Configuration validation subroutine script.
@@ -9053,7 +9053,7 @@ changes mixed together.
 +# time-stamp-end: "'"
 +# End:
 --- /dev/null
-+++ dttsp-1~svn675/am_demod.h
++++ dttsp-0~svn675/am_demod.h
 @@ -0,0 +1,86 @@
 +/* am_demod.h */
 +   
@@ -9142,7 +9142,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/isoband.h
++++ dttsp-0~svn675/isoband.h
 @@ -0,0 +1,47 @@
 +// isoband.h
 +/*
@@ -9192,7 +9192,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/correctIQ.c
++++ dttsp-0~svn675/correctIQ.c
 @@ -0,0 +1,83 @@
 +/** 
 +* @file correctIQ.c
@@ -9278,7 +9278,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/sdrexport.h
++++ dttsp-0~svn675/sdrexport.h
 @@ -0,0 +1,434 @@
 +/* sdrexport.h
 +
@@ -9715,7 +9715,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/keyboard-keyer.c
++++ dttsp-0~svn675/keyboard-keyer.c
 @@ -0,0 +1,676 @@
 +/** 
 +* @file keyboard-keyer.c
@@ -10394,7 +10394,7 @@ changes mixed together.
 +    gain = atof(buf + 4);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/configure
++++ dttsp-0~svn675/configure
 @@ -0,0 +1,6247 @@
 +#! /bin/sh
 +# Guess values for system-dependent variables and create Makefiles.
@@ -16644,7 +16644,7 @@ changes mixed together.
 +fi
 +
 --- /dev/null
-+++ dttsp-1~svn675/filterbank.c
++++ dttsp-0~svn675/filterbank.c
 @@ -0,0 +1,198 @@
 +/** 
 +* @file filterbank.c
@@ -16845,7 +16845,7 @@ changes mixed together.
 +  safefree((char *) p);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/missing
++++ dttsp-0~svn675/missing
 @@ -0,0 +1,376 @@
 +#! /bin/sh
 +# Common stub for a few missing GNU programs while installing.
@@ -17224,7 +17224,7 @@ changes mixed together.
 +# time-stamp-end: "; # UTC"
 +# End:
 --- /dev/null
-+++ dttsp-1~svn675/waveshape.h
++++ dttsp-0~svn675/waveshape.h
 @@ -0,0 +1,56 @@
 +// waveshape.h
 +/*
@@ -17283,7 +17283,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/update.c
++++ dttsp-0~svn675/update.c
 @@ -0,0 +1,2566 @@
 +/** 
 +* @file update.c
@@ -19852,7 +19852,7 @@ changes mixed together.
 +
 +//------------------------------------------------------------------------
 --- /dev/null
-+++ dttsp-1~svn675/cwtones.c
++++ dttsp-0~svn675/cwtones.c
 @@ -0,0 +1,225 @@
 +/** 
 +* @file cwtones.c
@@ -20080,7 +20080,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/sdrexport.c
++++ dttsp-0~svn675/sdrexport.c
 @@ -0,0 +1,43 @@
 +/* 
 +* @file sdrexport.c
@@ -20126,7 +20126,7 @@ changes mixed together.
 +struct _tx *tx;
 +struct _top *top;
 --- /dev/null
-+++ dttsp-1~svn675/banal.c
++++ dttsp-0~svn675/banal.c
 @@ -0,0 +1,396 @@
 +/** 
 +* @file banal.c
@@ -20525,7 +20525,7 @@ changes mixed together.
 +}
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/ringb.h
++++ dttsp-0~svn675/ringb.h
 @@ -0,0 +1,201 @@
 +/* ringb.h
 +  Derived from jack/ringbuffer.h
@@ -20729,7 +20729,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/hilbert.py
++++ dttsp-0~svn675/hilbert.py
 @@ -0,0 +1,54 @@
 +#!/usr/bin/env python
 +
@@ -20786,7 +20786,7 @@ changes mixed together.
 +if __name__ == '__main__':
 +    pass
 --- /dev/null
-+++ dttsp-1~svn675/Makefile.in
++++ dttsp-0~svn675/Makefile.in
 @@ -0,0 +1,735 @@
 +# Makefile.in generated by automake 1.11.1 from Makefile.am.
 +# @configure_input@
@@ -21524,7 +21524,7 @@ changes mixed together.
 +# Otherwise a system limit (for SysV at least) may be exceeded.
 +.NOEXPORT:
 --- /dev/null
-+++ dttsp-1~svn675/hilbert.c
++++ dttsp-0~svn675/hilbert.c
 @@ -0,0 +1,239 @@
 +/** 
 +* @file hilbert.c
@@ -21766,7 +21766,7 @@ changes mixed together.
 +
 + */  
 --- /dev/null
-+++ dttsp-1~svn675/iambic-keyer-e.c
++++ dttsp-0~svn675/iambic-keyer-e.c
 @@ -0,0 +1,888 @@
 +/* iambic-keyer.c */
 +/*
@@ -22657,7 +22657,7 @@ changes mixed together.
 +  exit(0);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/common.h
++++ dttsp-0~svn675/common.h
 @@ -0,0 +1,75 @@
 +/* common.h
 +a simple way to get all the necessary includes
@@ -22735,7 +22735,7 @@ changes mixed together.
 +#include <local.h>
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/thunk.c
++++ dttsp-0~svn675/thunk.c
 @@ -0,0 +1,95 @@
 +/** 
 +* @file thunk.c
@@ -22833,7 +22833,7 @@ changes mixed together.
 +}
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/splitfields.c
++++ dttsp-0~svn675/splitfields.c
 @@ -0,0 +1,151 @@
 +/** 
 +* @file splitfields.c
@@ -22987,7 +22987,7 @@ changes mixed together.
 +  spliton(s, str, _white);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/ovsv.c
++++ dttsp-0~svn675/ovsv.c
 @@ -0,0 +1,301 @@
 +/** 
 +* @file ovsv.c
@@ -23291,7 +23291,7 @@ changes mixed together.
 +
 +/*------------------------------------------------------------*/
 --- /dev/null
-+++ dttsp-1~svn675/lmadf.c
++++ dttsp-0~svn675/lmadf.c
 @@ -0,0 +1,383 @@
 +/** 
 +* @file lmadf.c
@@ -23677,7 +23677,7 @@ changes mixed together.
 +  } while (sigidx < sigsize);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/fm_demod.c
++++ dttsp-0~svn675/fm_demod.c
 @@ -0,0 +1,181 @@
 +/** 
 +* @file fm_demod.c
@@ -23861,7 +23861,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/speechproc.h
++++ dttsp-0~svn675/speechproc.h
 @@ -0,0 +1,54 @@
 +/* speechproc.h
 +   
@@ -23918,7 +23918,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/defs.h
++++ dttsp-0~svn675/defs.h
 @@ -0,0 +1,75 @@
 +/* defs.h */
 +/*
@@ -23996,7 +23996,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/hilbert.h
++++ dttsp-0~svn675/hilbert.h
 @@ -0,0 +1,69 @@
 +/* hilbert.h
 +
@@ -24068,7 +24068,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/isoband.c
++++ dttsp-0~svn675/isoband.c
 @@ -0,0 +1,157 @@
 +/** 
 +* @file isoband.c
@@ -24228,7 +24228,7 @@ changes mixed together.
 +  return ISOband_get_info(band)->high;
 +}
 --- /dev/null
-+++ dttsp-1~svn675/cxops.c
++++ dttsp-0~svn675/cxops.c
 @@ -0,0 +1,247 @@
 +/** 
 +* @file cxops.c
@@ -24478,7 +24478,7 @@ changes mixed together.
 +}
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/local.h
++++ dttsp-0~svn675/local.h
 @@ -0,0 +1,72 @@
 +/* local.h
 +
@@ -24553,7 +24553,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/ovsv.h
++++ dttsp-0~svn675/ovsv.h
 @@ -0,0 +1,69 @@
 +/* ovsv.h
 +
@@ -24625,7 +24625,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/halfband.c
++++ dttsp-0~svn675/halfband.c
 @@ -0,0 +1,553 @@
 +/** 
 +* @file halfband.c
@@ -25181,7 +25181,7 @@ changes mixed together.
 +static void
 +_safefree(char *p) { if (p) free(p); }
 --- /dev/null
-+++ dttsp-1~svn675/spottone.c
++++ dttsp-0~svn675/spottone.c
 @@ -0,0 +1,224 @@
 +/** 
 +* @file spottone.c
@@ -25408,7 +25408,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/graphiceq.c
++++ dttsp-0~svn675/graphiceq.c
 @@ -0,0 +1,100 @@
 +/** 
 +* @file graphiceq.c
@@ -25511,7 +25511,7 @@ changes mixed together.
 +}
 +
 --- /dev/null
-+++ dttsp-1~svn675/iambic-keyer.c
++++ dttsp-0~svn675/iambic-keyer.c
 @@ -0,0 +1,1029 @@
 +/** 
 +* @file iambic-keyer.c
@@ -26543,7 +26543,7 @@ changes mixed together.
 +  exit(0);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/sdr.c
++++ dttsp-0~svn675/sdr.c
 @@ -0,0 +1,1407 @@
 +/** 
 +* @file sdr.c
@@ -27953,7 +27953,7 @@ changes mixed together.
 +  uni->tick++;
 +}
 --- /dev/null
-+++ dttsp-1~svn675/banal.h
++++ dttsp-0~svn675/banal.h
 @@ -0,0 +1,115 @@
 +/* banal.h
 +   stuff we're too embarrassed to declare otherwise
@@ -28071,7 +28071,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/fastrig.h
++++ dttsp-0~svn675/fastrig.h
 @@ -0,0 +1,102 @@
 +/* fastrig.h
 +This file is part of a program that implements a Software-Defined Radio.
@@ -28176,7 +28176,7 @@ changes mixed together.
 +#endif
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/waveshape.c
++++ dttsp-0~svn675/waveshape.c
 @@ -0,0 +1,111 @@
 +// waveshape.c
 +// bipolar waveshaping
@@ -28290,7 +28290,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/sdr-main.c
++++ dttsp-0~svn675/sdr-main.c
 @@ -0,0 +1,1098 @@
 +/** 
 +* @file sdr-main.c
@@ -29391,7 +29391,7 @@ changes mixed together.
 +  exit(1);
 +}  
 --- /dev/null
-+++ dttsp-1~svn675/fastrig.c
++++ dttsp-0~svn675/fastrig.c
 @@ -0,0 +1,300 @@
 +/** 
 +* @file fastrig.c
@@ -29694,7 +29694,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/dttspagc.c
++++ dttsp-0~svn675/dttspagc.c
 @@ -0,0 +1,269 @@
 +/** 
 +* @file dttspagc.c
@@ -29966,7 +29966,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/wscompand.c
++++ dttsp-0~svn675/wscompand.c
 @@ -0,0 +1,152 @@
 +/** 
 +* @file wscompand.c
@@ -30121,7 +30121,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/lmadf.h
++++ dttsp-0~svn675/lmadf.h
 @@ -0,0 +1,129 @@
 +/* lmadf.h 
 +
@@ -30253,7 +30253,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/README
++++ dttsp-0~svn675/README
 @@ -0,0 +1,8 @@
 +This package is non-native. As it is created from a source repository, no 
 +tarball archive of the sources exists. Therefore it is created withing
@@ -30264,7 +30264,7 @@ changes mixed together.
 +# ./debian/rules get-orig-source
 +Then move the tarball to the parent directory.
 --- /dev/null
-+++ dttsp-1~svn675/ringb.c
++++ dttsp-0~svn675/ringb.c
 @@ -0,0 +1,484 @@
 +/** 
 +* @file ringb.c
@@ -30751,7 +30751,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/speechproc.c
++++ dttsp-0~svn675/speechproc.c
 @@ -0,0 +1,117 @@
 +/** 
 +* @file speechproc.c
@@ -30871,14 +30871,14 @@ changes mixed together.
 +	   (REAL) (RLBdata(sp->CG, i) / (sp->fac * pow(sp->MaxGain, 0.25))));
 +}
 --- /dev/null
-+++ dttsp-1~svn675/THANKS
++++ dttsp-0~svn675/THANKS
 @@ -0,0 +1,4 @@
 +
 +  * Jonathan Marsden <jmarsden@fastmail.fm>
 +	 Created a preliminary package of dttsp for ubuntu in 2010.
 +	 Wrote man page for sdr-core.
 --- /dev/null
-+++ dttsp-1~svn675/splitfields.h
++++ dttsp-0~svn675/splitfields.h
 @@ -0,0 +1,56 @@
 +/* splitfields.h
 +
@@ -30937,7 +30937,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/oscillator.c
++++ dttsp-0~svn675/oscillator.c
 @@ -0,0 +1,161 @@
 +/** 
 +* @file oscillator.c
@@ -31101,7 +31101,7 @@ changes mixed together.
 +    safefree((char *) p);
 +}
 --- /dev/null
-+++ dttsp-1~svn675/resample.c
++++ dttsp-0~svn675/resample.c
 @@ -0,0 +1,162 @@
 +/** 
 +* @file resample.c
@@ -31266,7 +31266,7 @@ changes mixed together.
 +*        it is 2^N REALs in length.
 +*/
 --- /dev/null
-+++ dttsp-1~svn675/spectrum.h
++++ dttsp-0~svn675/spectrum.h
 @@ -0,0 +1,88 @@
 +/* spectrum.h */
 +/*
@@ -31357,7 +31357,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/fromsys.h
++++ dttsp-0~svn675/fromsys.h
 @@ -0,0 +1,74 @@
 +/* fromsys.h
 +   stuff we need to import everywhere 
@@ -31434,7 +31434,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/update.h
++++ dttsp-0~svn675/update.h
 @@ -0,0 +1,46 @@
 +/* update.h
 +
@@ -31483,7 +31483,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/halfband.h
++++ dttsp-0~svn675/halfband.h
 @@ -0,0 +1,123 @@
 +// halfband.h
 +/*
@@ -31609,7 +31609,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/rtone.py
++++ dttsp-0~svn675/rtone.py
 @@ -0,0 +1,53 @@
 +#!/usr/bin/env python
 +# rtone rate dur Hz dB file
@@ -31665,7 +31665,7 @@ changes mixed together.
 +
 +fp.close()
 --- /dev/null
-+++ dttsp-1~svn675/ztone2.py
++++ dttsp-0~svn675/ztone2.py
 @@ -0,0 +1,72 @@
 +#!/usr/bin/env python
 +# ztone2 rate dur Hz_A dB_A Hz_B dB_B file
@@ -31740,7 +31740,7 @@ changes mixed together.
 +
 +fp.close()
 --- /dev/null
-+++ dttsp-1~svn675/ztone.py
++++ dttsp-0~svn675/ztone.py
 @@ -0,0 +1,54 @@
 +#!/usr/bin/env python
 +# ztone rate dur Hz dB file
@@ -31797,7 +31797,7 @@ changes mixed together.
 +
 +fp.close()
 --- /dev/null
-+++ dttsp-1~svn675/spottone.h
++++ dttsp-0~svn675/spottone.h
 @@ -0,0 +1,78 @@
 +/* spottone.h */
 +/*
@@ -31878,7 +31878,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/stkstuff.h
++++ dttsp-0~svn675/stkstuff.h
 @@ -0,0 +1,110 @@
 +// stkstuff.h
 +// DSP algorithms inspired by Stk. From-scratch in C.
@@ -31991,7 +31991,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/oscillator.h
++++ dttsp-0~svn675/oscillator.h
 @@ -0,0 +1,77 @@
 +/* oscillator.h
 +
@@ -32071,7 +32071,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/stkstuff.c
++++ dttsp-0~svn675/stkstuff.c
 @@ -0,0 +1,488 @@
 +/** 
 +* @file stkstuff.c
@@ -32562,7 +32562,7 @@ changes mixed together.
 +}
 +
 --- /dev/null
-+++ dttsp-1~svn675/resample.h
++++ dttsp-0~svn675/resample.h
 @@ -0,0 +1,69 @@
 +/* resample.h
 +
@@ -32634,7 +32634,7 @@ changes mixed together.
 +extern void delPolyPhaseFIR(ResSt r);
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/config.guess
++++ dttsp-0~svn675/config.guess
 @@ -0,0 +1,1502 @@
 +#! /bin/sh
 +# Attempt to guess a canonical system name.
@@ -34139,7 +34139,7 @@ changes mixed together.
 +# time-stamp-end: "'"
 +# End:
 --- /dev/null
-+++ dttsp-1~svn675/noiseblanker.c
++++ dttsp-0~svn675/noiseblanker.c
 @@ -0,0 +1,115 @@
 +/** 
 +* @file noiseblanker.c
@@ -34257,7 +34257,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/am_demod.c
++++ dttsp-0~svn675/am_demod.c
 @@ -0,0 +1,210 @@
 +/** 
 +* @file am_demod.c
@@ -34470,7 +34470,7 @@ changes mixed together.
 +  }
 +}
 --- /dev/null
-+++ dttsp-1~svn675/delay.h
++++ dttsp-0~svn675/delay.h
 @@ -0,0 +1,84 @@
 +// delay.h
 +/*
@@ -34557,7 +34557,7 @@ changes mixed together.
 +
 +#endif
 --- /dev/null
-+++ dttsp-1~svn675/dcblock.h
++++ dttsp-0~svn675/dcblock.h
 @@ -0,0 +1,55 @@
 +// dcblock.h
 +/*
