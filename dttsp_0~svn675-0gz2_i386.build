@@ -1,0 +1,65 @@
+ dpkg-buildpackage -rfakeroot -D -us -uc
+dpkg-buildpackage: warning: using a gain-root-command while being root
+dpkg-buildpackage: export CFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export CPPFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: export CXXFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export FFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export LDFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: source package dttsp
+dpkg-buildpackage: source version 0~svn675-0gz2
+dpkg-buildpackage: source changed by Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+ dpkg-source --before-build dttsp_0~svn675
+dpkg-buildpackage: host architecture i386
+dpkg-source: info: using options from dttsp_0~svn675/debian/source/local-options: --unapply-patches --single-debian-patch
+ fakeroot debian/rules clean
+dh --with autoreconf -Dsrc clean
+   dh_testdir -O-Dsrc
+   dh_auto_clean -O-Dsrc
+   dh_autoreconf_clean -O-Dsrc
+   dh_clean -O-Dsrc
+ dpkg-source -b dttsp_0~svn675
+dpkg-source: info: using options from dttsp_0~svn675/debian/source/local-options: --unapply-patches --single-debian-patch
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building dttsp using existing ./dttsp_0~svn675.orig.tar.gz
+dpkg-source: warning: newly created empty file 'INSTALL' will not be represented in diff
+dpkg-source: warning: newly created empty file 'NEWS' will not be represented in diff
+dpkg-source: warning: newly created empty file 'COPYING' will not be represented in diff
+dpkg-source: warning: newly created empty file 'ChangeLog' will not be represented in diff
+dpkg-source: warning: newly created empty file 'AUTHORS' will not be represented in diff
+dpkg-source: warning: ignoring deletion of symlink src/install-sh
+dpkg-source: warning: ignoring deletion of symlink src/depcomp
+dpkg-source: warning: ignoring deletion of symlink src/config.sub
+dpkg-source: warning: ignoring deletion of symlink src/missing
+dpkg-source: warning: ignoring deletion of symlink src/config.guess
+dpkg-source: warning: ignoring deletion of directory src/autom4te.cache
+dpkg-source: warning: ignoring deletion of file src/autom4te.cache/traces.0
+dpkg-source: warning: ignoring deletion of file src/autom4te.cache/output.0
+dpkg-source: warning: ignoring deletion of file src/autom4te.cache/traces.1
+dpkg-source: warning: ignoring deletion of file src/autom4te.cache/output.1
+dpkg-source: warning: ignoring deletion of file src/autom4te.cache/requests
+dpkg-source: warning: ignoring deletion of directory bin
+dpkg-source: warning: ignoring deletion of file bin/sdr-conn
+dpkg-source: warning: ignoring deletion of file bin/simplex-cw-startup
+dpkg-source: warning: ignoring deletion of file bin/sdr-run
+dpkg-source: warning: ignoring deletion of file bin/setup-ipc
+dpkg-source: warning: ignoring deletion of file bin/cmdr
+dpkg-source: warning: ignoring deletion of file bin/duplex-startup
+dpkg-source: warning: ignoring deletion of file bin/simplex-cw-conn
+dpkg-source: warning: ignoring deletion of file bin/duplex-conn
+dpkg-source: info: local changes stored in dttsp_0~svn675/debian/patches/debian-changes, the modified files are:
+ dttsp_0~svn675/src/Makefile.in
+ dttsp_0~svn675/src/aclocal.m4
+ dttsp_0~svn675/src/config.log
+ dttsp_0~svn675/src/configure
+dpkg-source: info: building dttsp in dttsp_0~svn675-0gz2.debian.tar.gz
+dpkg-source: info: building dttsp in dttsp_0~svn675-0gz2.dsc
+ debian/rules build
+dh --with autoreconf -Dsrc build
+   dh_testdir -O-Dsrc
+   dh_autoreconf -O-Dsrc
+   dh_auto_configure -O-Dsrc
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+configure: error: cannot find install-sh, install.sh, or shtool in "." "./.." "./../.."
+dh_auto_configure: ./configure --build=i486-linux-gnu --prefix=/usr --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --libexecdir=${prefix}/lib/dttsp --disable-maintainer-mode --disable-dependency-tracking returned exit code 1
+make: *** [build] Error 2
+dpkg-buildpackage: error: debian/rules build gave error exit status 2
