@@ -4,7 +4,7 @@ cd dttsp*
 rm debian/debhelper.log
 
 # Get sources
-[ -e ../*gz ] || ( ./debian/rules get-orig-source ; mv *gz .. )
+#( ./debian/rules get-orig-source ; mv *gz .. )
 
 # Build package #checksum not updated
 debuild 
