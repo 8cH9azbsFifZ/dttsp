@@ -7,10 +7,11 @@ rm debian/debhelper.log
 #mv sdr*gz ..
 
 # Build package #checksum not updated
-#debuild
-#debuild -S
+debuild
+debuild -S
 #dpkg-buildpackage
 
+# Remove logfiles
 cd ..
 cd dttsp*
 rm debian/debhelper.log

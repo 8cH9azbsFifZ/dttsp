@@ -170,5 +170,13 @@ Now signing changes and any dsc files...
  signfile dttsp_0~svn675-0gz2.dsc Dr. Gerolf Ziegenhain <g@ziegenhain.com>
 gpg: WARNING: unsafe ownership on configuration file `/root/.gnupg/gpg.conf'
 gpg: WARNING: unsafe ownership on configuration file `/root/.gnupg/gpg.conf'
-gpg: Invalid passphrase; please try again ...
-gpg: Invalid passphrase; please try again ...
+can't connect to `/tmp/gpg-JdAmfg/S.gpg-agent': No such file or directory
+gpg: can't connect to `/tmp/gpg-JdAmfg/S.gpg-agent': connect failed
+
+ signfile dttsp_0~svn675-0gz2_source.changes Dr. Gerolf Ziegenhain <g@ziegenhain.com>
+gpg: WARNING: unsafe ownership on configuration file `/root/.gnupg/gpg.conf'
+gpg: WARNING: unsafe ownership on configuration file `/root/.gnupg/gpg.conf'
+can't connect to `/tmp/gpg-JdAmfg/S.gpg-agent': No such file or directory
+gpg: can't connect to `/tmp/gpg-JdAmfg/S.gpg-agent': connect failed
+
+Successfully signed dsc and changes files
