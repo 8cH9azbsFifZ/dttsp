@@ -1,0 +1,10 @@
+Dependencies
+============
+* gsl
+
+Building
+========
+automake --add-missing
+./configure
+make
+
