@@ -15,14 +15,11 @@ AC_CANONICAL_HOST
 AC_PROG_CC
 AC_PROG_RANLIB
 
-dnl XXX we need to cover Intel as well as PowerPC
-if test $host_cpu = "powerpc" && test $host_vendor = "apple"; then
-
-	dnl set specific macosx paths (fink)
-	CFLAGS="$CFLAGS -I/sw/include"
-	LDFLAGS="$LDFLAGS -L/sw/lib"
-	CPPFLAGS="$CPPFLAGS -I/sw/include"
-fi
+# FIXME: uname = Darwin
+# OSX Stuff
+CFLAGS="$CFLAGS -I/opt/local/include/"
+LDFLAGS="$LDFLAGS -L/opt/local/lib"
+CPPFLAGS="$CPPFLAGS -I/opt/local/include/"
 
 # Checks for libraries.
 AC_CHECK_LIB([fftw3f], [fftwf_execute], ,
@@ -31,7 +28,7 @@ AC_CHECK_LIB([jack], [jack_connect], ,
 	[AC_MSG_ERROR("Could not find library jack.")])
 AC_CHECK_LIB([m], [pow])
 AC_CHECK_LIB([pthread], [pthread_create])
-AC_CHECK_LIB([gsl])
+AC_CHECK_LIB([gsl], [gsl_matrix_float_set])
 
 # Checks for header files.
 AC_HEADER_STDC
